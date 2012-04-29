@@ -1,0 +1,38 @@
+{
+  "name": "grunt-requirejs",
+  "description": "Using requirejs with grunt",
+  "version": "0.1.0",
+  "homepage": "https://github.com/asciidisco/grunt-requirejs",
+  "author": {
+    "name": "asciidisco",
+    "email": "public@asciidisco.com"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git@://github.com/asciidisco/grunt-requirejs.git"
+  },
+  "bugs": {
+    "url": "https://github.com/asciidisco/grunt-requirejs/issues"
+  },
+  "licenses": [
+    {
+      "type": "MIT",
+      "url": "https://github.com/asciidisco/grunt-requirejs/blob/master/LICENSE-MIT"
+    }
+  ],
+  "main": "grunt.js",
+  "bin": "bin/grunt-requirejs",
+  "engines": {
+    "node": "0.6.0"
+  },
+  "scripts": {
+    "test": "grunt test"
+  },
+  "dependencies": {
+    "grunt": "~0.3.6"
+  },
+  "devDependencies": {
+    "grunt": "~0.3.6"
+  },
+  "keywords": []
+}
