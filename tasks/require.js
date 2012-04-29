@@ -34,7 +34,21 @@ module.exports = function(grunt) {
   // ==========================================================================
 
   grunt.registerHelper('require', function() {
-    return 'require!!!';
+    var requireConfig = config.get('build');
+    var fs = require('fs');
+    var done = this.async();
+
+    // use require js to regenerate
+    grunt.utils.spawn({
+      cmd: './node_modules/r.js/bin/r.js',
+      args: ['-o', requireConfig.requireFile]
+    }, function  (err, stdout, stderr) {
+      grunt.log.write(stdout.stdout);
+      // All done!
+      done();
+    });
+
+    return done;
   });
 
 };
