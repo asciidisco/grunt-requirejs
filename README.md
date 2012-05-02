@@ -1,6 +1,6 @@
 # grunt-require
 
-Use the [@cowboys](https://github.com/cowboy) wonderful js based optimizer [grunt](https://github.com/cowboy/grunt) 
+Use [@cowboys](https://github.com/cowboy) wonderful js based optimizer [grunt](https://github.com/cowboy/grunt) 
 together with [@jrburkes](https://github.com/jrburke) [r.js](https://github.com/jrburke/r.js) optimizer,
 to build your AMD based projects with grunt.
 
