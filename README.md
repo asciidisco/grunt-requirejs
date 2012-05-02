@@ -9,7 +9,21 @@ Install this grunt plugin next to your project's [grunt.js gruntfile][getting_st
 
 Then add this line to your project's `grunt.js` gruntfile.
 
-Example require js optimizer grunt file entry: 
+```javascript
+task.loadNpmTasks('grunt-requirejs');
+```
+
+
+### Resources
+[grunt]: https://github.com/cowboy/grunt
+[getting_started]: https://github.com/cowboy/grunt/blob/master/docs/getting_started.md
+[requirejs]: http://requirejs.org
+
+## Documentation
+Load the grunt-requirejs task as described in 'Getting started' and add your r.js optimizer
+configuration to your grunt file:
+
+Example require js optimizer grunt file config entry: 
 
 ```javascript
 
@@ -37,21 +51,6 @@ Example require js optimizer grunt file entry:
 
 The only difference to the std. r.js optimization config is, that you can add a 'clearTarget' flag
 to delete the contents of the target dir before building.
-
-### Resources
-[grunt]: https://github.com/cowboy/grunt
-[getting_started]: https://github.com/cowboy/grunt/blob/master/docs/getting_started.md
-[requirejs]: http://requirejs.org
-
-## Documentation
-Load the grunt-requirejs task as described in 'Getting started' and add your r.js optimizer
-configuration tp your grunt file:
-
-```javascript
-task.loadNpmTasks('grunt-requirejs');
-```
-
-
 
 ## Release History
 ### 0.1.0
