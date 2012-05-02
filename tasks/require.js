@@ -17,38 +17,69 @@ module.exports = function(grunt) {
   var option = grunt.option;
   var config = grunt.config;
   var template = grunt.template;
+  // requirejs optimizer
+  var rjs = require('requirejs');
+  var fs = require('fs');
+  var wrench = require('wrench');
 
-  // Please see the grunt documentation for more information regarding task and
-  // helper creation: https://github.com/cowboy/grunt/blob/master/docs/toc.md
 
   // ==========================================================================
   // TASKS
   // ==========================================================================
 
-  grunt.registerTask('require', 'Your task description goes here.', function() {
-    log.write(grunt.helper('require'));
+  grunt.registerTask('requirejs', 'Runs requirejs optimizer', function() {
+    var done = this.async(),
+        optimize = function () {
+          // run the optimizer
+          grunt.helper('optimize', {
+              config: config.get('requirejs'),
+              done: function(err) {
+                  done();
+              }
+          });
+        }
+
+    // log process start
+    log.writeln('>> RequireJS optimizer startet');
+
+    // check if we should clear the build directory
+    if (config.get('requirejs').clearTarget === true) {
+      grunt.helper('clearTarget', {
+        config: config.get('requirejs'),
+        cb: optimize
+      })
+    } else {
+      optimize();
+    }
   });
 
   // ==========================================================================
   // HELPERS
   // ==========================================================================
 
-  grunt.registerHelper('require', function() {
-    var requireConfig = config.get('build');
-    var fs = require('fs');
-    var done = this.async();
+  // helper to execute requirejs optimizer function
+  grunt.registerHelper('optimize', function(options) {
+    rjs.optimize(options.config, function (result) {
+      // check if verbose flag is set, then log result
+      if (verbose === true) {
+        log.writeln(result);
+      }
 
-    // use require js to regenerate
-    grunt.utils.spawn({
-      cmd: './node_modules/r.js/bin/r.js',
-      args: ['-o', requireConfig.requireFile]
-    }, function  (err, stdout, stderr) {
-      grunt.log.write(stdout.stdout);
-      // All done!
-      done();
+      // log process end
+      log.writeln('>> RequireJS optimizer finished');
+
+      options.done();
     });
+  });
 
-    return done;
+  // helper to clean the build target directory
+  grunt.registerHelper('clearTarget', function (options) {
+    // log clear target function
+    log.writeln('>> Clear target directory');
+    wrench.rmdirSyncRecursive(options.config.dir, true);
+    fs.mkdirSync(options.config.dir);
+    options.cb();
+    return true;
   });
 
 };

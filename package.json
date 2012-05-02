@@ -23,16 +23,18 @@
   "main": "grunt.js",
   "bin": "bin/grunt-requirejs",
   "engines": {
-    "node": "0.6.0"
+    "node": ">=0.6.0"
   },
   "scripts": {
     "test": "grunt test"
   },
   "dependencies": {
-    "r.js": ">=1.0.7",
+    "wrench": ">=0.1.0",    
+    "requirejs": ">=1.0.7",
     "grunt": "~0.3.6"
   },
   "devDependencies": {
+    "wrench": ">=0.1.0",    
     "grunt": "~0.3.6"
   },
   "keywords": []
