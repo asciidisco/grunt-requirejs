@@ -21,6 +21,7 @@ task.loadNpmTasks('grunt-requirejs');
 ```
 
 ### Resources
+
 [grunt]: https://github.com/cowboy/grunt
 [getting_started]: https://github.com/cowboy/grunt/blob/master/docs/getting_started.md
 [requirejs]: http://requirejs.org
