@@ -62,18 +62,20 @@ instead of using a separate requirejs config file.
 ## Almond
 If you like to replace require.js with almond.js during the build process, grunt-requirejs comes with an
 experimental [almond](https://github.com/jrburke/almond) injection mode. It even converts your require 
-<script> calls in your html files to call the "almondyfied" module, instead of calling require.js 
+script calls in your html files to call the 'almondyfied' module, instead of calling require.js 
 that then calls (e.g.) loads the module.
 
 The only constraint for using the auto almond insertion is, that you at least define one module
-(mostly named as 'main').
+(mostly named 'main').
+
+```javascript
 
 // ... grunt file contents
  requirejs: {
       // almond specific contents
       // *insert almond in all your modules
       almond: true,
-      // *replace require <script> calls, with the almond modules
+      // *replace require script calls, with the almond modules
       // in the following files 
       replaceRequireScript: [{
         files: ['build/index.html'],
@@ -108,6 +110,7 @@ The only constraint for using the auto almond insertion is, that you at least de
 + Added [almond](https://github.com/jrburke/almond) integration
 + Added automatic almond js module script tag replacement for html files
 + Imporoved documentation
+
 ### 0.1.0
 + Initial Release
 
