@@ -22,11 +22,11 @@ task.loadNpmTasks('grunt-requirejs');
 
 ### Resources
 
-[grunt]: https://github.com/cowboy/grunt
-[getting_started]: https://github.com/cowboy/grunt/blob/master/docs/getting_started.md
-[requirejs]: http://requirejs.org
-[almond]: https://github.com/jrburke/almond
-[grunt-contrib]: https://github.com/gruntjs/grunt-contrib
++ [grunt](https://github.com/cowboy/grunt)
++ [getting_started](https://github.com/cowboy/grunt/blob/master/docs/getting_started.md)
++ [requirejs](http://requirejs.org)
++ [almond](https://github.com/jrburke/almond)
++ [grunt-contrib](https://github.com/gruntjs/grunt-contrib)
 
 ## Documentation
 Load the grunt-requirejs task as described in 'Getting started' and add your r.js optimizer
