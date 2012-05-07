@@ -1,8 +1,3 @@
-# WARNING
-
-The plugin is currently broken in the not officially released, but available via npm version 0.2.0.
-Please use version 0.1.0 explicitly if you need a working instance!
-
 # grunt-require
 
 Use [@cowboys](https://github.com/cowboy) wonderful js based optimizer [grunt](https://github.com/cowboy/grunt) 
