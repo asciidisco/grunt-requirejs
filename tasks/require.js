@@ -25,6 +25,7 @@ module.exports = function(grunt) {
   var rjs = require('requirejs'); 
   var $ = require('jQuery');
   var npm = require('npm');
+  var fs = require('fs');
 
   // ==========================================================================
   // PRIVATE HELPER FUNCTIONS
@@ -86,6 +87,25 @@ module.exports = function(grunt) {
 
       // log process end
       log.ok('RequireJS optimizer finished');
+
+      // display sizes of modules
+      if (isArray(options.config.modules) && options.config.dir && options.config.baseUrl) {
+        options.config.modules.forEach(function (module) {
+          try {
+            // Query the entry
+            stats = fs.lstatSync(module._buildPath);
+
+            // Is it a file
+            if (stats.isFile()) {
+                grunt.helper('require_size_info', module.name, options.config.optimize, grunt.file.read(module._buildPath, 'utf-8'));
+            }
+          }
+          catch (e) {
+            log.warn('Stats not available for module: ' + module.name);
+          }
+
+        });
+      }
 
       // check for callback, else mark as done
       if (isFunction(options.cb)) {
@@ -202,6 +222,12 @@ module.exports = function(grunt) {
       }
 
     }
+  });
+
+  // Output some size info about a file.
+  grunt.registerHelper('require_size_info', function(module, optimized, filecontents) {
+    var gzipSize = String(grunt.helper('gzip', filecontents).length);
+    grunt.log.writeln('Compressed size for module "' + module + '": ' + gzipSize.green + ' bytes gzipped (' + String(filecontents.length).green + ' bytes ' + (!!optimized !== false ? 'minified' : 'uncompressed') + ').');
   });
 
 };
