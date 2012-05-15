@@ -105,6 +105,32 @@ The only constraint for using the auto almond insertion is, that you at least de
 // ... even more grunt file contents
 ```
 
+## Dual Config
+Should you wish to use require.js to optimize your CSS in addition to JS, this is possible using a dual config.
+
+```javascript
+
+// ... grunt file contents
+ requirejs: {
+
+      js: {
+        // config for js
+      },
+
+      css: {
+        // config for css
+      }
+
+    }
+
+// ... even more grunt file contents
+```
+Then when calling your task you can do the following, passing the mode you wish to run the optimizer in after :.
+
+```javascript
+    grunt.registerTask('release', 'requirejs:css requirejs:js');
+```
+
 ## Release History
 ### 0.2.0
 + Removed clearTarget (use grunt-contrib clean instead)
