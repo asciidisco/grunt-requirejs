@@ -61,10 +61,10 @@ module.exports = function(grunt) {
     var done = this.async(),
         rqConfig = config.get('requirejs');
 
-    rqConfig = mode && rqConfig[mode] || rqConfig;
+    rqConfig = mode && rqConfig[mode] || rqConfig.js || rqConfig.css || rqConfig;
 
     // log process start
-    log.ok('RequireJS optimizer started' + (mode && ': '  + mode.toUpperCase()));
+    log.ok('RequireJS optimizer started');
 
     // execute clear target helper
     grunt.helper('almond', {
