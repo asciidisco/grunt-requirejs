@@ -128,7 +128,7 @@ Should you wish to use require.js to optimize your CSS in addition to JS, this i
 Then when calling your task you can do the following, passing the mode you wish to run the optimizer in after :.
 
 ```javascript
-    grunt.registerTask('release', 'requirejs:css requirejs:js');
+grunt.registerTask('release', 'requirejs:css requirejs:js');
 ```
 
 ## Release History
