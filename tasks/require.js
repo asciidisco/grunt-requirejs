@@ -57,12 +57,14 @@ module.exports = function(grunt) {
   // TASKS
   // ==========================================================================
 
-  grunt.registerTask('requirejs', 'Runs requirejs optimizer', function() {
+  grunt.registerTask('requirejs', 'Runs requirejs optimizer', function(mode) {
     var done = this.async(),
         rqConfig = config.get('requirejs');
 
+    rqConfig = mode && rqConfig[mode] || rqConfig;
+
     // log process start
-    log.ok('RequireJS optimizer started');
+    log.ok('RequireJS optimizer started' + (mode && ': '  + mode.toUpperCase()));
 
     // execute clear target helper
     grunt.helper('almond', {
