@@ -141,11 +141,17 @@ or
 If no argument is specified, then the task will look for the approprate config in the following order, JS, CSS and then finally it will use whatever config has been defined if neither JS or CSS is found.
 
 ## Release History
+### 0.2.5
++ Added dual config
++ Optimized almond integration (removed npm dependency)
++ Readme updates
++ requirejs isnt a multi task anymore
+
 ### 0.2.0
 + Removed clearTarget (use grunt-contrib clean instead)
 + Added [almond](https://github.com/jrburke/almond) integration
 + Added automatic almond js module script tag replacement for html files
-+ Imporoved documentation
++ Improved documentation
 
 ### 0.1.0
 + Initial Release
