@@ -6,7 +6,9 @@
  * Licensed under the MIT license.
  */
 
-module.exports = function(grunt) {
+module.exports = function (grunt) {
+  'use strict';
+
   // Grunt utilities.
   var task = grunt.task;
   var file = grunt.file;
@@ -39,7 +41,7 @@ module.exports = function(grunt) {
             done: done,
             cb: cb
         });      
-    }
+    };
   };
 
   // runs the almond js html file replacement
@@ -50,7 +52,7 @@ module.exports = function(grunt) {
             done: done,
             cb: cb
         });
-    }
+    };
   };
 
   // ==========================================================================
@@ -95,7 +97,7 @@ module.exports = function(grunt) {
         options.config.modules.forEach(function (module) {
           try {
             // Query the entry
-            stats = fs.lstatSync(module._buildPath);
+            var stats = fs.lstatSync(module._buildPath);
 
             // Is it a file
             if (stats.isFile()) {
@@ -229,7 +231,7 @@ module.exports = function(grunt) {
   // Output some size info about a file.
   grunt.registerHelper('require_size_info', function(module, optimized, filecontents) {
     var gzipSize = String(grunt.helper('gzip', filecontents).length);
-    grunt.log.writeln('Compressed size for module "' + module + '": ' + gzipSize.green + ' bytes gzipped (' + String(filecontents.length).green + ' bytes ' + (!!optimized !== false ? 'minified' : 'uncompressed') + ').');
+    grunt.log.writeln('Compressed size for module "' + module + '": ' + gzipSize.green + ' bytes gzipped (' + String(filecontents.length).green + ' bytes ' + (optimized !== false ? 'minified' : 'uncompressed') + ').');
   });
 
 };
