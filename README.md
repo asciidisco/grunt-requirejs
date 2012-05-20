@@ -6,6 +6,8 @@ to build your AMD based projects with grunt.
 
 Now with [almond](https://github.com/jrburke/almond) goodness.
 
+[![Build Status](https://secure.travis-ci.org/asciidisco/grunt-requirejs.png?branch=master)](http://travis-ci.org/asciidisco/grunt-requirejs)
+
 ## Upgrade warning
 I removed the 'clearTarget' config option from the plugin, because i want you all
 to go to [grunt-contrib](https://github.com/gruntjs/grunt-contrib) page and use their
