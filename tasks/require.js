@@ -57,9 +57,11 @@ module.exports = function(grunt) {
   // TASKS
   // ==========================================================================
 
-  grunt.registerTask('requirejs', 'Runs requirejs optimizer', function() {
+  grunt.registerTask('requirejs', 'Runs requirejs optimizer', function(mode) {
     var done = this.async(),
         rqConfig = config.get('requirejs');
+
+    rqConfig = mode && rqConfig[mode] || rqConfig.js || rqConfig.css || rqConfig;
 
     // log process start
     log.ok('RequireJS optimizer started');
