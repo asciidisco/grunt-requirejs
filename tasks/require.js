@@ -228,10 +228,17 @@ module.exports = function (grunt) {
     }
   });
 
-  // Output some size info about a file.
+  // Output some size info about the generated module
   grunt.registerHelper('require_size_info', function(module, optimized, filecontents) {
-    var gzipSize = String(grunt.helper('gzip', filecontents).length);
-    grunt.log.writeln('Compressed size for module "' + module + '": ' + gzipSize.green + ' bytes gzipped (' + String(filecontents.length).green + ' bytes ' + (optimized !== false ? 'minified' : 'uncompressed') + ').');
+    var gzipSize = grunt.helper('gzip', filecontents).length,
+        fileSize = filecontents.length,
+        message = 'Compressed size for module "' + module + '": ' + String(gzipSize).green + ' bytes gzipped (' + String(fileSize).green + ' bytes ' + (optimized !== false ? 'minified' : 'uncompressed') + ').';
+
+    // output info msg
+    grunt.log.writeln(message);
+
+    // return traced informations 
+    return {gzipSize: gzipSize, module: module, fileSize: fileSize, message: message};
   });
 
 };
