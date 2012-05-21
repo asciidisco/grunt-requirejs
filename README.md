@@ -129,6 +129,18 @@ requirejs: {
     out: 'js/main-build.js'
 }
 ```
+
+### require function not found after almond integration
+First occured in [issue #3](https://github.com/asciidisco/grunt-requirejs/issues/3).
+You probably have to set 
+
+```javascript
+requirejs: {
+    wrap: true
+}
+```
+
+like described here: [https://github.com/jrburke/almond#usage](https://github.com/jrburke/almond#usage)
  
 ## Dual Config
 By default it is assumed that your are using the optimizer for only JS or CSS not both. However should you wish to use require.js to optimize your CSS in addition to your JS, this is possible using a dual config. This will allow you to maintain your config options for both your CSS and JS under the requirejs key in your grunt.js. 
@@ -166,6 +178,14 @@ or
 If no argument is specified, then the task will look for the approprate config in the following order, JS, CSS and then finally it will use whatever config has been defined if neither JS or CSS is found.
 
 ## Release History
+### 0.2.7
++ Removed npm dependency for tracing the almond file
++ Added some informations in the readme about the almond 'wrap=true'
+
+### 0.2.6
++ Added 'modulePath' configuration option for specifying your modules path 
++ Added 'modulePath' documentation
+
 ### 0.2.5
 + Added dual config
 + Optimized almond integration (removed npm dependency)

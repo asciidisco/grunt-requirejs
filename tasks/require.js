@@ -27,7 +27,6 @@ module.exports = function (grunt) {
   // lib dependencies
   var rjs = require('requirejs'); 
   var $ = require('jQuery');
-  var npm = require('npm');
   var fs = require('fs');
 
   // ==========================================================================
@@ -178,20 +177,16 @@ module.exports = function (grunt) {
 
   // helper to execute requirejs optimizer function
   grunt.registerHelper('almond', function (options) {
+    var configClone = clone(options.config);
+
     // check if we should inline almond
     if (options.config.almond === true) {
-      var npmDir = npm.dir,
-          almondPath = npmDir + '/' + 'grunt-requirejs/node_modules/almond/',
-          configClone = clone(options.config);
-
-      // fetch the almond main file
-      npm.load(JSON.parse(grunt.file.read(almondPath + 'package.json')), function (err, npmLocal) {
         
         // log almond including
         log.ok('Including almond.js');
 
         // set almond path
-        configClone.paths.almond = String(almondPath + npmLocal.config.get('main')).replace('.js', '');
+        configClone.paths.almond = require.resolve('almond').replace('.js', '');
 
         // modify modules data
         configClone.modules.forEach(function (module, idx) {
@@ -215,8 +210,6 @@ module.exports = function (grunt) {
           }
 
         });
-
-      });
 
     } else {
 
