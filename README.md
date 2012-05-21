@@ -72,7 +72,6 @@ The only constraint for using the auto almond insertion is, that you at least de
 (mostly named 'main').
 
 ```javascript
-
 // ... grunt file contents
  requirejs: {
       // almond specific contents
@@ -106,7 +105,31 @@ The only constraint for using the auto almond insertion is, that you at least de
 
 // ... even more grunt file contents
 ```
+### Special case, the 'out' property
 
+If you define a special output name for your generated module file,
+you have to specify a "modulePath" property inside your "replaceRequireScript" configuration 
+
+```javascript
+requirejs: {
+    almond: true,
+    replaceRequireScript: [{
+        files: ['index.html'],
+        module: 'main',
+        modulePath: '/js/main-build' 
+    }],
+    baseUrl: "js",
+    paths: {
+        'Handlebars': 'libs/Handlebars',
+        'Backbone': 'libs/backbone',
+        'underscore': 'libs/underscore',
+        'json2': 'libs/json2',
+    },
+    modules: [{name: 'main'}],
+    out: 'js/main-build.js'
+}
+```
+ 
 ## Dual Config
 By default it is assumed that your are using the optimizer for only JS or CSS not both. However should you wish to use require.js to optimize your CSS in addition to your JS, this is possible using a dual config. This will allow you to maintain your config options for both your CSS and JS under the requirejs key in your grunt.js. 
 

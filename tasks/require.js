@@ -6,9 +6,7 @@
  * Licensed under the MIT license.
  */
 
-module.exports = function (grunt) {
-  'use strict';
-
+module.exports = function(grunt) {
   // Grunt utilities.
   var task = grunt.task;
   var file = grunt.file;
@@ -17,6 +15,7 @@ module.exports = function (grunt) {
   var fail = grunt.fail;
   var config = grunt.config;
   var utils = typeof grunt.utils !== 'undefined' ? grunt.utils : grunt.util;
+  var _ = utils._;
 
   // shortcuts
   var isArray = utils._.isArray;
@@ -41,7 +40,7 @@ module.exports = function (grunt) {
             done: done,
             cb: cb
         });      
-    };
+    }
   };
 
   // runs the almond js html file replacement
@@ -52,7 +51,7 @@ module.exports = function (grunt) {
             done: done,
             cb: cb
         });
-    };
+    }
   };
 
   // ==========================================================================
@@ -93,11 +92,11 @@ module.exports = function (grunt) {
       log.ok('RequireJS optimizer finished');
 
       // display sizes of modules
-      if (isArray(options.config.modules) && options.config.dir && options.config.baseUrl) {
+      if (isArray(options.config.modules) && options.config.baseUrl) {
         options.config.modules.forEach(function (module) {
           try {
             // Query the entry
-            var stats = fs.lstatSync(module._buildPath);
+            stats = fs.lstatSync(module._buildPath);
 
             // Is it a file
             if (stats.isFile()) {
@@ -145,7 +144,8 @@ module.exports = function (grunt) {
               // replace the attributes of requires script tag
               // with the 'almonded' version of the module
               var $newElm = $(elm).clone(), newElm = $newElm[0].outerHTML;
-              contents = contents.replace($.trim(newElm.replace('<script', '').replace('></script>', '')), 'src="' + $newElm.attr('data-main') + '.js"');
+              var insertScript = _.isUndefined(entry.modulePath) !== true ? entry.modulePath : $newElm.attr('data-main');
+              contents = contents.replace($.trim(newElm.replace('<script', '').replace('></script>', '')), 'src="' + insertScript + '.js"');
             }
 
           });
@@ -228,17 +228,10 @@ module.exports = function (grunt) {
     }
   });
 
-  // Output some size info about the generated module
+  // Output some size info about a file.
   grunt.registerHelper('require_size_info', function(module, optimized, filecontents) {
-    var gzipSize = grunt.helper('gzip', filecontents).length,
-        fileSize = filecontents.length,
-        message = 'Compressed size for module "' + module + '": ' + String(gzipSize).green + ' bytes gzipped (' + String(fileSize).green + ' bytes ' + (optimized !== false ? 'minified' : 'uncompressed') + ').';
-
-    // output info msg
-    grunt.log.writeln(message);
-
-    // return traced informations 
-    return {gzipSize: gzipSize, module: module, fileSize: fileSize, message: message};
+    var gzipSize = String(grunt.helper('gzip', filecontents).length);
+    grunt.log.writeln('Compressed size for module "' + module + '": ' + gzipSize.green + ' bytes gzipped (' + String(filecontents.length).green + ' bytes ' + (!!optimized !== false ? 'minified' : 'uncompressed') + ').');
   });
 
 };
