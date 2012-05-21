@@ -6,7 +6,9 @@
  * Licensed under the MIT license.
  */
 
-module.exports = function(grunt) {
+module.exports = function (grunt) {
+  'use strict';
+
   // Grunt utilities.
   var task = grunt.task;
   var file = grunt.file;
@@ -40,7 +42,7 @@ module.exports = function(grunt) {
             done: done,
             cb: cb
         });      
-    }
+    };
   };
 
   // runs the almond js html file replacement
@@ -51,7 +53,7 @@ module.exports = function(grunt) {
             done: done,
             cb: cb
         });
-    }
+    };
   };
 
   // ==========================================================================
@@ -92,11 +94,11 @@ module.exports = function(grunt) {
       log.ok('RequireJS optimizer finished');
 
       // display sizes of modules
-      if (isArray(options.config.modules) && options.config.baseUrl) {
+      if (isArray(options.config.modules) && options.config.dir) {
         options.config.modules.forEach(function (module) {
           try {
             // Query the entry
-            stats = fs.lstatSync(module._buildPath);
+            var stats = fs.lstatSync(module._buildPath);
 
             // Is it a file
             if (stats.isFile()) {
@@ -228,10 +230,17 @@ module.exports = function(grunt) {
     }
   });
 
-  // Output some size info about a file.
+  // Output some size info about the generated module
   grunt.registerHelper('require_size_info', function(module, optimized, filecontents) {
-    var gzipSize = String(grunt.helper('gzip', filecontents).length);
-    grunt.log.writeln('Compressed size for module "' + module + '": ' + gzipSize.green + ' bytes gzipped (' + String(filecontents.length).green + ' bytes ' + (!!optimized !== false ? 'minified' : 'uncompressed') + ').');
+    var gzipSize = grunt.helper('gzip', filecontents).length,
+        fileSize = filecontents.length,
+        message = 'Compressed size for module "' + module + '": ' + String(gzipSize).green + ' bytes gzipped (' + String(fileSize).green + ' bytes ' + (optimized !== false ? 'minified' : 'uncompressed') + ').';
+
+    // output info msg
+    grunt.log.writeln(message);
+
+    // return traced informations 
+    return {gzipSize: gzipSize, module: module, fileSize: fileSize, message: message};
   });
 
 };
