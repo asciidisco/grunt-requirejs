@@ -1,7 +1,7 @@
 {
   "name": "grunt-requirejs",
   "description": "Using requirejs and almond with grunt",
-  "version": "0.2.7",
+  "version": "0.2.78,
   "homepage": "https://github.com/asciidisco/grunt-requirejs",
   "author": {
     "name": "asciidisco",
@@ -30,7 +30,7 @@
   },
   "dependencies": {
     "grunt": "~0.3.6",
-    "requirejs": "~1.0.8",
+    "requirejs": "~2.0.0",
     "jQuery": "~1.7.2",
     "almond": "~0.0.3"
   },
