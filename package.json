@@ -29,7 +29,7 @@
     "test": "grunt travis --verbose"
   },
   "dependencies": {
-    "grunt": "~0.3.6",
+    "grunt": "~0.3.9",
     "requirejs": "~2.0.0",
     "jQuery": "~1.7.2",
     "almond": "~0.0.3"
