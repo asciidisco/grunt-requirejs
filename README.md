@@ -178,6 +178,9 @@ or
 If no argument is specified, then the task will look for the approprate config in the following order, JS, CSS and then finally it will use whatever config has been defined if neither JS or CSS is found.
 
 ## Release History
+### 0.2.8
++ RequireJS Version bump to 2.0
+
 ### 0.2.7
 + Removed npm dependency for tracing the almond file
 + Added some informations in the readme about the almond 'wrap=true'
