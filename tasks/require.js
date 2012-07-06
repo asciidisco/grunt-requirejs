@@ -26,7 +26,7 @@ module.exports = function (grunt) {
   
   // lib dependencies
   var rjs = require('requirejs'); 
-  var $ = require('cheerio');
+  var $ = require('jQuery');
   var fs = require('fs');
 
   // ==========================================================================
