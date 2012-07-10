@@ -125,7 +125,7 @@ module.exports = function (grunt) {
   grunt.registerHelper('replaceRequireWithAlmond', function (options) {
     // check if we should replace require with almond in html files
     if (options.config.almond === true && isArray(options.config.replaceRequireScript)) {
-      var $ = require('jQuery').create();
+      var $ = require('cheerio');
 
       // iterate over all modules that are configured for replacement
       options.config.replaceRequireScript.forEach(function (entry, idx) {
