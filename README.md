@@ -178,6 +178,10 @@ or
 If no argument is specified, then the task will look for the approprate config in the following order, JS, CSS and then finally it will use whatever config has been defined if neither JS or CSS is found.
 
 ## Release History
+### 0.2.9
++ Removed jQuery dependency and replaced it with cheerio
++ Updated versions of 3rd party libs
+
 ### 0.2.8
 + RequireJS Version bump to 2.0
 
