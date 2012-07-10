@@ -125,7 +125,7 @@ module.exports = function (grunt) {
   grunt.registerHelper('replaceRequireWithAlmond', function (options) {
     // check if we should replace require with almond in html files
     if (options.config.almond === true && isArray(options.config.replaceRequireScript)) {
-      var $ = require('cheerio');
+      var cheerio = require('cheerio');
 
       // iterate over all modules that are configured for replacement
       options.config.replaceRequireScript.forEach(function (entry, idx) {
@@ -137,22 +137,22 @@ module.exports = function (grunt) {
         files.forEach(function (file, index) {
           // load file contents
           var contents = String(grunt.file.read(file, 'utf-8'));
+          $ = cheerio.load(contents);
           // iterate over content nodes to find the correct script tags
-          $(contents).each(function (idx, elm) {
+          $('script').each(function (idx, elm) {
 
             // check for require js like script tags
-            if (String(elm.tagName).toLowerCase() === 'script' && $(elm).attr('data-main') !== '') {
+            if ($(elm)[0].name.toLowerCase() === 'script' && $(elm)[0].attribs && $(elm)[0].attribs['data-main']) {
               // replace the attributes of requires script tag
               // with the 'almonded' version of the module
-              var $newElm = $(elm).clone(), newElm = $newElm[0].outerHTML;
-              var insertScript = _.isUndefined(entry.modulePath) !== true ? entry.modulePath : $newElm.attr('data-main');
-              contents = contents.replace($.trim(newElm.replace('<script', '').replace('></script>', '')), 'src="' + insertScript + '.js"');
+              var insertScript = _.isUndefined(entry.modulePath) !== true ? entry.modulePath : $(elm).attr('data-main');
+              $(elm).attr('src', insertScript + '.js').removeAttr('data-main');
             }
 
           });
 
           // write out newly created file contents
-          grunt.file.write(file, contents, 'utf-8');
+          grunt.file.write(file, $.html(), 'utf-8');
         });
       });
 
