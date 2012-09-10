@@ -216,20 +216,11 @@ module.exports = function (grunt) {
             }
           }
 
-          // check for callback, else mark as done
-          if (isFunction(options.cb)) {
-            options.cb(configClone);
-          } else {
-            options.done();
-          }
-
         });
-
-    } else {
 
       // check for callback, else mark as done
       if (isFunction(options.cb)) {
-        options.cb();
+        options.cb(configClone);
       } else {
         options.done();
       }
