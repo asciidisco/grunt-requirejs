@@ -1,6 +1,6 @@
 # grunt-require
 
-Use [@cowboys](https://github.com/cowboy) wonderful js based optimizer [grunt](https://github.com/cowboy/grunt) 
+Use [@cowboys](https://github.com/cowboy) wonderful js based optimizer [grunt](https://github.com/cowboy/grunt)
 together with [@jrburkes](https://github.com/jrburke) [r.js](https://github.com/jrburke/r.js) optimizer,
 to build your AMD based projects with grunt.
 
@@ -34,7 +34,7 @@ grunt.loadNpmTasks('grunt-requirejs');
 Load the grunt-requirejs task as described in 'Getting started' and add your r.js optimizer
 configuration to your grunt file:
 
-Example require js optimizer grunt file config entry: 
+Example require js optimizer grunt file config entry:
 
 ```javascript
 
@@ -64,8 +64,8 @@ instead of using a separate requirejs config file.
 
 ## Almond
 If you like to replace require.js with almond.js during the build process, grunt-requirejs comes with an
-experimental [almond](https://github.com/jrburke/almond) injection mode. It even converts your require 
-script calls in your html files to call the 'almondyfied' module, instead of calling require.js 
+experimental [almond](https://github.com/jrburke/almond) injection mode. It even converts your require
+script calls in your html files to call the 'almondyfied' module, instead of calling require.js
 that then calls (e.g.) loads the module.
 
 The only constraint for using the auto almond insertion is, that you at least define one module
@@ -78,7 +78,7 @@ The only constraint for using the auto almond insertion is, that you at least de
       // *insert almond in all your modules
       almond: true,
       // *replace require script calls, with the almond modules
-      // in the following files 
+      // in the following files
       replaceRequireScript: [{
         files: ['build/index.html'],
         module: 'main'
@@ -86,7 +86,7 @@ The only constraint for using the auto almond insertion is, that you at least de
       // "normal" require config
       // *create at least a 'main' module
       // thats necessary for using the almond auto insertion
-      modules: [{name: 'main'}],      
+      modules: [{name: 'main'}],
       dir: 'build',
       appDir: 'src',
       baseUrl: 'js',
@@ -108,7 +108,7 @@ The only constraint for using the auto almond insertion is, that you at least de
 ### Special case, the 'out' property
 
 If you define a special output name for your generated module file,
-you have to specify a "modulePath" property inside your "replaceRequireScript" configuration 
+you have to specify a "modulePath" property inside your "replaceRequireScript" configuration
 
 ```javascript
 requirejs: {
@@ -116,7 +116,7 @@ requirejs: {
     replaceRequireScript: [{
         files: ['index.html'],
         module: 'main',
-        modulePath: '/js/main-build' 
+        modulePath: '/js/main-build'
     }],
     baseUrl: "js",
     paths: {
@@ -132,7 +132,7 @@ requirejs: {
 
 ### require function not found after almond integration
 First occured in [issue #3](https://github.com/asciidisco/grunt-requirejs/issues/3).
-You probably have to set 
+You probably have to set
 
 ```javascript
 requirejs: {
@@ -141,9 +141,9 @@ requirejs: {
 ```
 
 like described here: [https://github.com/jrburke/almond#usage](https://github.com/jrburke/almond#usage)
- 
+
 ## Dual Config
-By default it is assumed that your are using the optimizer for only JS or CSS not both. However should you wish to use require.js to optimize your CSS in addition to your JS, this is possible using a dual config. This will allow you to maintain your config options for both your CSS and JS under the requirejs key in your grunt.js. 
+By default it is assumed that your are using the optimizer for only JS or CSS not both. However should you wish to use require.js to optimize your CSS in addition to your JS, this is possible using a dual config. This will allow you to maintain your config options for both your CSS and JS under the requirejs key in your grunt.js.
 
 ```javascript
 
@@ -168,7 +168,7 @@ Then when calling your task you can pass as an argument the mode your wish to ru
 grunt.registerTask('release', 'requirejs:css requirejs:js');
 ```
 
-or 
+or
 
 ```javascript
 > grunt requirejs:js
@@ -178,6 +178,10 @@ or
 If no argument is specified, then the task will look for the approprate config in the following order, JS, CSS and then finally it will use whatever config has been defined if neither JS or CSS is found.
 
 ## Release History
+### 0.2.10
++ Fixed issue #4
++ Fixed issue #8
+
 ### 0.2.9
 + Removed jQuery dependency and replaced it with cheerio
 + Updated versions of 3rd party libs
@@ -190,7 +194,7 @@ If no argument is specified, then the task will look for the approprate config i
 + Added some informations in the readme about the almond 'wrap=true'
 
 ### 0.2.6
-+ Added 'modulePath' configuration option for specifying your modules path 
++ Added 'modulePath' configuration option for specifying your modules path
 + Added 'modulePath' documentation
 
 ### 0.2.5
@@ -209,5 +213,5 @@ If no argument is specified, then the task will look for the approprate config i
 + Initial Release
 
 ## License
-Copyright (c) 2012 asciidisco  
+Copyright (c) 2012 asciidisco
 Licensed under the MIT license.
