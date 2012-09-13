@@ -125,7 +125,6 @@ requirejs: {
         'underscore': 'libs/underscore',
         'json2': 'libs/json2',
     },
-    modules: [{name: 'main'}],
     out: 'js/main-build.js'
 }
 ```
