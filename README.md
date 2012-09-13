@@ -178,6 +178,9 @@ or
 If no argument is specified, then the task will look for the approprate config in the following order, JS, CSS and then finally it will use whatever config has been defined if neither JS or CSS is found.
 
 ## Release History
+### 0.2.11
++ Fixed issue #17 (almond: false, causes build to fail)
+
 ### 0.2.10
 + Fixed issue #4
 + Fixed issue #8
