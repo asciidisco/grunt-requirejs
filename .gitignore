@@ -1,2 +1,4 @@
 /node_modules/
+/examples/multipage/www-built/
+/examples/multipage-shim/www-built/
 .DS_Store

@@ -1,6 +1,9 @@
 /*global module:false*/
 module.exports = function(grunt) {
 
+    // replace this line with
+    // grunt.loadNpmTasks("require-js");
+    // if you use this example standalone
     grunt.loadTasks("../../tasks");
 
     grunt.initConfig({
