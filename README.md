@@ -165,7 +165,7 @@ By default it is assumed that your are using the optimizer for only JS or CSS no
 Then when calling your task you can pass as an argument the mode your wish to run the task in.
 
 ```javascript
-grunt.registerTask('release', 'requirejs:css requirejs:js');
+grunt.registerTask('release', 'requirejs:css', 'requirejs:js');
 ```
 
 or
