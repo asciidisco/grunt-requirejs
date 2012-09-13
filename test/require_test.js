@@ -25,5 +25,21 @@ exports['require'] = {
     test.equal(helperValuesSeriesB.message, 'Compressed size for module "b": \u001b[32m26\u001b[39m bytes gzipped (\u001b[32m6\u001b[39m bytes uncompressed).');
 
     test.done();
+  },
+  'almond helper runs callback even if almond: false': function(test) {
+    var wasCalled = false,
+        options = {
+          config: {
+            modules: []
+          },
+          almond: false,
+          cb: function() {
+            wasCalled = true;
+          }
+        };
+        
+    grunt.helper('almond', options);
+    test.equal(true, wasCalled);
+    test.done();
   }
 };
