@@ -37,7 +37,7 @@ exports['require'] = {
             wasCalled = true;
           }
         };
-        
+
     grunt.helper('almond', options);
     test.equal(true, wasCalled);
     test.done();

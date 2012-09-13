@@ -1,5 +1,7 @@
 module.exports = function(grunt) {
 
+  grunt.loadTasks('tasks');
+
   // Project configuration.
   grunt.initConfig({
     pkg: '<json:package.json>',
@@ -20,7 +22,7 @@ module.exports = function(grunt) {
         'The above copyright notice and this permission notice shall be included in\n' +
         'all copies or substantial portions of the Software.\n\n' +
         'THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND,\n' +
-        'EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,\n' + 
+        'EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,\n' +
         'FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT.\n' +
         'IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM,\n' +
         'DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE,\n' +
@@ -30,6 +32,11 @@ module.exports = function(grunt) {
     test: {
       files: ['test/**/*.js']
     },
+
+    qunit: {
+      files: ['examples/**/tests/*.html']
+    },
+
     lint: {
       files: ['grunt.js', 'tasks/**/*.js', 'test/**/*.js']
     },
@@ -56,12 +63,57 @@ module.exports = function(grunt) {
     }
   });
 
+  grunt.registerTask('prepare', function () {
+    var done = this.async(),
+        preparation = [false, false, false],
+        checkForPreparation = function () {
+          if (grunt.utils._.all(preparation, grunt.utils._.identity)) {
+            grunt.log.ok('all examples build');
+            done();
+          }
+        };
+
+    // build libglobal example
+    grunt.utils.spawn({
+      cmd: 'grunt',
+      args: ['build'],
+      opts: {cwd: 'examples/libglobal'}
+    }, function () {
+      grunt.log.writeln('> "libglobal" example build');
+      preparation[0] = true;
+      checkForPreparation();
+    });
+
+    // build multipage example
+    grunt.utils.spawn({
+      cmd: 'grunt',
+      args: ['build'],
+      opts: {cwd: 'examples/multipage'}
+    }, function () {
+      grunt.log.writeln('> "multipage" example build');
+      preparation[1] = true;
+      checkForPreparation();
+    });
+
+    // build multipage-shim example
+    grunt.utils.spawn({
+      cmd: 'grunt',
+      args: ['build'],
+      opts: {cwd: 'examples/multipage-shim'}
+    }, function () {
+      grunt.log.writeln('> "multipage-shim" example build');
+      preparation[2] = true;
+      checkForPreparation();
+    });
+
+  });
+
   // Load local tasks.
   grunt.loadTasks('tasks');
 
   // Default task.
-  grunt.registerTask('default', 'lint test');
+  grunt.registerTask('default', 'lint test qunit');
 
   // Default task.
-  grunt.registerTask('travis', 'lint test');
+  grunt.registerTask('travis', 'prepare lint test qunit');
 };
