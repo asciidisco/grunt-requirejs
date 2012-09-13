@@ -180,6 +180,7 @@ If no argument is specified, then the task will look for the approprate config i
 ## Release History
 ### 0.2.11
 + Fixed issue #17 (almond: false, causes build to fail)
++ Added example projects
 
 ### 0.2.10
 + Fixed issue #4
