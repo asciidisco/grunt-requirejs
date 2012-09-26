@@ -84,6 +84,7 @@ module.exports = function (grunt) {
 
   // helper to execute requirejs optimizer function
   grunt.registerHelper('optimize', function (options) {
+
     // call rjs optimizer
     rjs.optimize(options.config, function (result) {
       // check if verbose flag is set, then log result
@@ -194,10 +195,12 @@ module.exports = function (grunt) {
           moduleIterator = [{name: options.config.name}];
 
           if (!_.isArray(configClone.include)) {
-            configClone.include = ['almond'];
+            configClone.include = [configClone.name];
           } else {
-            configClone.include.push('almond');
+            configClone.include.unshift(configClone.name);
           }
+
+          configClone.name = 'almond';
         }
 
         // modify modules data
@@ -209,10 +212,12 @@ module.exports = function (grunt) {
           // then append almond to them
           // else generate a new includes property
           if (isArray(module.include) === true) {
-            configClone.modules[idx].include.push('almond');
+            configClone.modules[idx].include.unshift(configClone.modules[idx].name);
+            configClone.modules[idx].name = 'almond';
           } else {
             if (!_.isUndefined(configClone.modules)) {
-              configClone.modules[idx].include = ['almond'];
+              configClone.modules[idx].include = [configClone.modules[idx].name];
+              configClone.modules[idx].name = 'almond';
             }
           }
 
