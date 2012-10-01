@@ -216,8 +216,7 @@ module.exports = function (grunt) {
             configClone.modules[idx].name = 'almond';
           } else {
             if (!_.isUndefined(configClone.modules)) {
-              configClone.modules[idx].include = [configClone.modules[idx].name];
-              configClone.modules[idx].name = 'almond';
+              configClone.modules[idx].include = ['almond'];
             }
           }
 
