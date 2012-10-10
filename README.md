@@ -177,6 +177,9 @@ or
 If no argument is specified, then the task will look for the approprate config in the following order, JS, CSS and then finally it will use whatever config has been defined if neither JS or CSS is found.
 
 ## Release History
+### 0.2.13
++ fixes package.json dependecy versions
+
 ### 0.2.12
 + fixes issue of r.js almond-based dependency mixup (added by @chrissrogers)
 

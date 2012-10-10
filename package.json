@@ -31,10 +31,10 @@
     "test": "grunt travis --verbose"
   },
   "dependencies": {
-    "grunt": ">=0.3.9",
-    "requirejs": ">=2.0.x",
+    "grunt": "0.3.x",
+    "requirejs": "2.0.x",
     "cheerio": "0.9.2",
-    "almond": "latest"
+    "almond": "0.2.x"
   },
   "keywords": [
     "gruntplugin"
