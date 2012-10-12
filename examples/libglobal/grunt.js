@@ -17,17 +17,19 @@ module.exports = function(grunt) {
         },
 
         requirejs: {
-            almond: true,
-            baseUrl: "lib",
-            paths: {
-                principium: "../principium"
-            },
-            include: ["principium"],
-            exclude: ["jquery", "underscore"],
-            out: "dist/principium.js",
-            wrap: {
-                startFile: "wrap/wrap.start",
-                endFile: "wrap/wrap.end"
+            std: {
+                almond: true,
+                baseUrl: "lib",
+                paths: {
+                    principium: "../principium"
+                },
+                include: ["principium"],
+                exclude: ["jquery", "underscore"],
+                out: "dist/principium.js",
+                wrap: {
+                    startFile: "wrap/wrap.start",
+                    endFile: "wrap/wrap.end"
+                }
             }
         },
 

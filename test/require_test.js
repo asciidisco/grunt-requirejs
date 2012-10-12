@@ -2,6 +2,11 @@ var grunt = require('grunt');
 // Load local tasks.
 grunt.loadTasks('tasks');
 
+// load size diff helper
+var sizeInfo = require('../lib/sizeInfo').init(grunt);
+// load almond helper
+var almondify = require('../lib/almondify').init(grunt);
+
 exports['require'] = {
   setUp: function(done) {
     // setup here
@@ -9,20 +14,22 @@ exports['require'] = {
   },
   // require_size_info helper test
   'testRequireSizeInfoHelper': function(test) {
-    var helperValuesSeriesA = grunt.helper('require_size_info', 'a', true, 'foo'),
-        helperValuesSeriesB = grunt.helper('require_size_info', 'b', false, 'foobar');
-    test.expect(8);
+    var helperValuesSeriesA = sizeInfo.info('a', true, 'foo'),
+        helperValuesSeriesB = sizeInfo.info('b', false, 'foobar');
+    test.expect(10);
 
     // tests here
     test.equal(helperValuesSeriesA.module, 'a', 'Should determine the module');
     test.equal(helperValuesSeriesA.gzipSize, 23, 'Should determine the correct gzip size');
     test.equal(helperValuesSeriesA.fileSize, 3, 'Should determine the correct "file" size');
-    test.equal(helperValuesSeriesA.message, 'Compressed size for module "a": \u001b[32m23\u001b[39m bytes gzipped (\u001b[32m3\u001b[39m bytes minified).', 'Should output the correct message');
+    test.equal(helperValuesSeriesA.messageUncompressed, 'Uncompressed size: \u001b[32m3\u001b[39m bytes.', 'Should output the correct message');
+    test.equal(helperValuesSeriesA.messageCompressed, 'Compressed size: \u001b[32m23\u001b[39m bytes gzipped. (\u001b[32m3\u001b[39m bytes minified)', 'Should output the correct message');
 
     test.equal(helperValuesSeriesB.module, 'b', 'Should determine the module');
     test.equal(helperValuesSeriesB.gzipSize, 26, 'Should determine the correct gzip size');
     test.equal(helperValuesSeriesB.fileSize, 6, 'Should determine the correct "file" size');
-    test.equal(helperValuesSeriesB.message, 'Compressed size for module "b": \u001b[32m26\u001b[39m bytes gzipped (\u001b[32m6\u001b[39m bytes uncompressed).');
+    test.equal(helperValuesSeriesB.messageUncompressed, 'Uncompressed size: \u001b[32m6\u001b[39m bytes.');
+    test.equal(helperValuesSeriesB.messageCompressed, 'Compressed size: \u001b[32m26\u001b[39m bytes gzipped.', 'Should output the correct message');
 
     test.done();
   },
@@ -38,7 +45,7 @@ exports['require'] = {
           }
         };
 
-    grunt.helper('almond', options);
+    almondify.almondify(options);
     test.equal(true, wasCalled);
     test.done();
   }
