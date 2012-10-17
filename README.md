@@ -40,22 +40,23 @@ Example require js optimizer grunt file config entry:
 
 // ... grunt file contents
  requirejs: {
-      dir: 'build',
-      appDir: 'src',
-      baseUrl: 'js',
-      paths: {
-          underscore: '../vendor/underscore',
-          jquery    : '../vendor/jquery',
-          backbone  : '../vendor/backbone'
-      },
-      pragmas: {
-          doExclude: true
-      },
-      skipModuleInsertion: false,
-      optimizeAllPluginResources: true,
-      findNestedDependencies: true
+    std: {
+          dir: 'build',
+          appDir: 'src',
+          baseUrl: 'js',
+          paths: {
+              underscore: '../vendor/underscore',
+              jquery    : '../vendor/jquery',
+              backbone  : '../vendor/backbone'
+          },
+          pragmas: {
+              doExclude: true
+          },
+          skipModuleInsertion: false,
+          optimizeAllPluginResources: true,
+          findNestedDependencies: true
+        }
     }
-
 // ... even more grunt file contents
 ```
 
@@ -74,35 +75,36 @@ The only constraint for using the auto almond insertion is, that you at least de
 ```javascript
 // ... grunt file contents
  requirejs: {
-      // almond specific contents
-      // *insert almond in all your modules
-      almond: true,
-      // *replace require script calls, with the almond modules
-      // in the following files
-      replaceRequireScript: [{
-        files: ['build/index.html'],
-        module: 'main'
-      }],
-      // "normal" require config
-      // *create at least a 'main' module
-      // thats necessary for using the almond auto insertion
-      modules: [{name: 'main'}],
-      dir: 'build',
-      appDir: 'src',
-      baseUrl: 'js',
-      paths: {
-          underscore: '../vendor/underscore',
-          jquery    : '../vendor/jquery',
-          backbone  : '../vendor/backbone'
-      },
-      pragmas: {
-          doExclude: true
-      },
-      skipModuleInsertion: false,
-      optimizeAllPluginResources: true,
-      findNestedDependencies: true
+    std: {
+          // almond specific contents
+          // *insert almond in all your modules
+          almond: true,
+          // *replace require script calls, with the almond modules
+          // in the following files
+          replaceRequireScript: [{
+            files: ['build/index.html'],
+            module: 'main'
+          }],
+          // "normal" require config
+          // *create at least a 'main' module
+          // thats necessary for using the almond auto insertion
+          modules: [{name: 'main'}],
+          dir: 'build',
+          appDir: 'src',
+          baseUrl: 'js',
+          paths: {
+              underscore: '../vendor/underscore',
+              jquery    : '../vendor/jquery',
+              backbone  : '../vendor/backbone'
+          },
+          pragmas: {
+              doExclude: true
+          },
+          skipModuleInsertion: false,
+          optimizeAllPluginResources: true,
+          findNestedDependencies: true
+        }
     }
-
 // ... even more grunt file contents
 ```
 ### Special case, the 'out' property
@@ -112,20 +114,22 @@ you have to specify a "modulePath" property inside your "replaceRequireScript" c
 
 ```javascript
 requirejs: {
-    almond: true,
-    replaceRequireScript: [{
-        files: ['index.html'],
-        module: 'main',
-        modulePath: '/js/main-build'
-    }],
-    baseUrl: "js",
-    paths: {
-        'Handlebars': 'libs/Handlebars',
-        'Backbone': 'libs/backbone',
-        'underscore': 'libs/underscore',
-        'json2': 'libs/json2',
-    },
-    out: 'js/main-build.js'
+    std: {
+        almond: true,
+        replaceRequireScript: [{
+            files: ['index.html'],
+            module: 'main',
+            modulePath: '/js/main-build'
+        }],
+        baseUrl: "js",
+        paths: {
+            'Handlebars': 'libs/Handlebars',
+            'Backbone': 'libs/backbone',
+            'underscore': 'libs/underscore',
+            'json2': 'libs/json2',
+        },
+        out: 'js/main-build.js'
+    }
 }
 ```
 
@@ -135,7 +139,9 @@ You probably have to set
 
 ```javascript
 requirejs: {
-    wrap: true
+    std: {
+        wrap: true
+    }
 }
 ```
 
@@ -148,7 +154,7 @@ By default it is assumed that your are using the optimizer for only JS or CSS no
 
 // ... grunt file contents
  requirejs: {
-
+    std: {
       js: {
         // config for js
       },
@@ -158,7 +164,7 @@ By default it is assumed that your are using the optimizer for only JS or CSS no
       }
 
     }
-
+}
 // ... even more grunt file contents
 ```
 Then when calling your task you can pass as an argument the mode your wish to run the task in.
