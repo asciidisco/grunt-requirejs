@@ -10,10 +10,12 @@ var almondify = require('../lib/almondify').init(grunt);
 exports['require'] = {
   setUp: function(done) {
     // setup here
+    "use strict";
     done();
   },
   // require_size_info helper test
   'testRequireSizeInfoHelper': function(test) {
+    "use strict";
     var helperValuesSeriesA = sizeInfo.info('a', true, 'foo'),
         helperValuesSeriesB = sizeInfo.info('b', false, 'foobar');
     test.expect(10);
@@ -34,6 +36,7 @@ exports['require'] = {
     test.done();
   },
   'almond helper runs callback even if almond: false': function(test) {
+    "use strict";
     var wasCalled = false,
         options = {
           config: {
