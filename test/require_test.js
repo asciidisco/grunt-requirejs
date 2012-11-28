@@ -47,17 +47,18 @@ exports['require'] = {
     test.done();
   },
 
+  // test the error handler
   testErrorHandlerHelper: function(test) {
     test.expect(2);
     var errorHandler = require(intLibPath + 'helper/errorhandler')({
       log: {
-        error: function (message) {
+        error: function(message) {
           test.equal(message, 'error', 'Grunt error handler has been called');
         }
       }
     });
 
-    errorHandler = errorHandler.bind({done: function (succeded) {
+    errorHandler = errorHandler.bind({done: function(succeded) {
       test.equal(succeded, false, 'Done called with a not succeding argument');
     }});
 
@@ -66,13 +67,35 @@ exports['require'] = {
     test.done();
   },
 
+  // test the require js default version return
   testGetDefaultRjsVersion: function(test) {
-    test.expect(0);
+    test.expect(3);
+    var config = {};
+
+    var rjs = rjsversion.getRequirejs(config);
+    var version = rjsversion.getRequirejsVersionInfo();
+    var isCustom = rjsversion.isCustomLibrary();
+
+    test.equal((typeof rjs === 'function'), true, 'Default library is used if no config given');
+    test.equal(version, '2.1.2', 'Version is current');
+    test.equal(isCustom, false, 'Default library is used if no config given');
+
     test.done();
   },
 
+  // test the require js custom version return
   testGetCustomRjsVersion: function(test) {
-    test.expect(0);
+    test.expect(3);
+    var config = {rjs: __dirname + '/fixtures/requirejs'};
+
+    var rjs = rjsversion.getRequirejs(config);
+    var version = rjsversion.getRequirejsVersionInfo();
+    var isCustom = rjsversion.isCustomLibrary();
+
+    test.equal((typeof rjs === 'function'), true, 'Custom library is used if custom config given');
+    test.equal(version, '2.0.6', 'Custom version has been set');
+    test.equal(isCustom, true, 'Custom library is used if correct config is given');
+
     test.done();
   },
 
