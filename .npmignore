@@ -1,1 +1,14 @@
 /node_modules/
+/test/
+/docs/
+/examples/
+.editorconfig
+.gitattributes
+.gitignore
+.jshinttrc
+.npmignore
+.travis.yml
+AUTHORS.md
+CHANGELOG
+CONTRIBUTING.md
+grunt.js
