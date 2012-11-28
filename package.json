@@ -21,9 +21,6 @@
     }
   ],
   "main": "grunt.js",
-  "bin": {
-    "grunt-requirejs": "bin/grunt-requirejs"
-  },
   "engines": {
     "node": ">=0.8.0"
   },
@@ -36,7 +33,11 @@
     "cheerio": "0.9.2",
     "almond": "0.2.x",
     "gzip-js": "0.3.x",
-    "grunt-lodashbuilder": "0.1.x"
+    "q": "0.8.x",
+    "temp": "0.4.x",
+    "grunt-lodashbuilder": "0.1.x",
+    "grunt-jquerybuilder": "0.1.x",
+    "grunt-backbonebuilder": "0.1.x"
   },
   "keywords": [
     "gruntplugin"

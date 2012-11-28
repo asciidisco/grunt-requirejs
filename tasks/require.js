@@ -1,67 +1,52 @@
-/*global require: true */
-
 /*
- * grunt-require
+ * grunt-requirejs
  * https://github.com/asciidisco/grunt-requirejs
  *
- * Copyright (c) 2012 asciidisco
+ * Copyright (c) 2012 Sebastian Golasch, contributors
  * Licensed under the MIT license.
  */
 
 module.exports = function (grunt) {
   'use strict';
 
-  // Internal lib
-  var optimize = require('../lib/optimize').init(grunt);
-  var almondify = require('../lib/almondify').init(grunt);
-  var replace = require('../lib/replace').init(grunt);
-  var lodash = require('../lib/lodash').init(grunt);
+  // External libs.
+  var Q = require('q');
 
-  // ==========================================================================
-  // PRIVATE HELPER FUNCTIONS
-  // ==========================================================================
+  // Path to internal libs
+  var intLibPath = '../lib/';
 
-  var Helper = {};
+  // Internal libs.
+  var errorHandler = require(intLibPath + 'helper/errorhandler')(grunt);
+  var optimize = require(intLibPath + 'optimize').init(grunt);
+  var almondify = require(intLibPath + 'almondify').init(grunt);
+  var replaceAlmondInHtmlFiles = require(intLibPath + 'replace').init(grunt);
+  var lodashCustomBuilder = require(intLibPath + 'custombuilder/lodash').init(grunt);
+  var jqueryCustomBuilder = require(intLibPath + 'custombuilder/jquery').init(grunt);
+  var backboneCustomBuilder = require(intLibPath + 'custombuilder/backbone').init(grunt);
 
-  // runs the require js optimizer
-  Helper.optimize = function (config, done, cb) {
-    return function (chgConfig) {
-        optimize.optimize({
-            config: typeof chgConfig === 'undefined' ? config : chgConfig,
-            done: done,
-            cb: cb
-        });
-    };
-  };
+  // requirejs Multitask
+  // runs a promises chain of helper libraries
+  // the order of the helper libraries is important
+  // each helper runs independent & has no dependencies on the other helpers
+  grunt.registerMultiTask('requirejs', 'Runs requirejs optimizer', function() {
+    var done = this.async();
 
-  // runs the almond js html file replacement
-  Helper.replaceAlmond = function (config, done, cb) {
-    return function (chgConfig) {
-        replace.replace({
-            config: typeof chgConfig === 'undefined' ? config : chgConfig,
-            done: done,
-            cb: cb
-        });
-    };
-  };
+    // The functions only accept the plugin
+    // config as a parameter & only return the config.
+    // The functions might modify the config during
+    // the run or add arbitary data.
+    // Calls ´done´ when all chain is comletely executed
+    // Calls the ´errorhandler if an error occures during the build
+    Q.fcall(lodashCustomBuilder, this.data)
+      .then(jqueryCustomBuilder)
+      .then(backboneCustomBuilder)
+      .then(almondify)
+      .then(optimize)
+      .then(replaceAlmondInHtmlFiles)
+      .fail(errorHandler.bind({done: done}))
+      .fin(done)
+      .done();
 
-  // ==========================================================================
-  // TASKS
-  // ==========================================================================
-
-  grunt.registerMultiTask('requirejs', 'Runs requirejs optimizer', function(mode) {
-    var done = this.async(),
-        config = this.data;
-
-    // execute lodash checker helper
-    lodash.lodashify({
-      config: config,
-      done: done,
-      cb: almondify.almondify,
-      Helper: Helper
-    });
-
-    //return done;
   });
 
 };

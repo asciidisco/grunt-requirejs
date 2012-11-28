@@ -13,6 +13,7 @@ exports['require'] = {
     "use strict";
     done();
   },
+
   // require_size_info helper test
   'testRequireSizeInfoHelper': function(test) {
     "use strict";
@@ -35,6 +36,7 @@ exports['require'] = {
 
     test.done();
   },
+
   'almond helper runs callback even if almond: false': function(test) {
     "use strict";
     var wasCalled = false,
