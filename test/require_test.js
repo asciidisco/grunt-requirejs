@@ -1,5 +1,6 @@
 // External libs.
 var grunt = require('grunt');
+var Q = require('q');
 
 // Load local tasks.
 grunt.loadTasks('tasks');
@@ -97,6 +98,58 @@ exports['require'] = {
     test.equal(isCustom, true, 'Custom library is used if correct config is given');
 
     test.done();
+  },
+
+  // test the output of the backbone builder
+  testBackboneCustomBuilderOutput: function(test) {
+    test.expect(2);
+    var config = {
+      builder: {backbone:{include: ['View']}}
+    };
+
+    Q.fcall(backboneCustomBuilder, config)
+      .then(function(modifiedConfig) {
+        test.equal((typeof modifiedConfig.__builderOutput === 'object'), true, 'Builder output has been generated');
+        test.equal(modifiedConfig.__builderOutput[0].name, 'backbone', 'Builder output has been named correctly');
+        test.done();
+      })
+      .done();
+  },
+
+  // test the output of the lodash builder
+  testLodashCustomBuilderOutput: function (test) {
+    test.expect(2);
+    var config = {
+      builder: {lodash:{include: ['each']}}
+    };
+
+    Q.fcall(lodashCustomBuilder, config)
+      .then(function(modifiedConfig) {
+        test.equal((typeof modifiedConfig.__builderOutput === 'object'), true, 'Builder output has been generated');
+        test.equal(modifiedConfig.__builderOutput[0].name, 'lodash', 'Builder output has been named correctly');
+        test.done();
+      })
+      .done();
+  },
+
+  // test the output of the jQuery builder
+  testjQueryCustomBuilderOutput: function (test) {
+    test.expect(2);
+    var config = {
+      builder: {
+        jquery: {
+          exclude: ['deprecated', 'effects']
+        },
+      }
+    };
+
+    Q.fcall(jqueryCustomBuilder, config)
+      .then(function(modifiedConfig) {
+        test.equal((typeof modifiedConfig.__builderOutput === 'object'), true, 'Builder output has been generated');
+        test.equal(modifiedConfig.__builderOutput[0].name, 'jquery', 'Builder output has been named correctly');
+        test.done();
+      })
+      .done();
   },
 
   /*'almond helper runs callback even if almond: false': function(test) {
