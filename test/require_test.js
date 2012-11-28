@@ -50,6 +50,7 @@ exports['require'] = {
 
   // test the error handler
   testErrorHandlerHelper: function(test) {
+    'use strict';
     test.expect(2);
     var errorHandler = require(intLibPath + 'helper/errorhandler')({
       log: {
@@ -70,6 +71,7 @@ exports['require'] = {
 
   // test the require js default version return
   testGetDefaultRjsVersion: function(test) {
+    'use strict';
     test.expect(3);
     var config = {};
 
@@ -86,6 +88,7 @@ exports['require'] = {
 
   // test the require js custom version return
   testGetCustomRjsVersion: function(test) {
+    'use strict';
     test.expect(3);
     var config = {rjs: __dirname + '/fixtures/requirejs'};
 
@@ -102,6 +105,7 @@ exports['require'] = {
 
   // test the output of the backbone builder
   testBackboneCustomBuilderOutput: function(test) {
+    'use strict';
     test.expect(2);
     var config = {
       builder: {backbone:{include: ['View']}}
@@ -117,7 +121,8 @@ exports['require'] = {
   },
 
   // test the output of the lodash builder
-  testLodashCustomBuilderOutput: function (test) {
+  testLodashCustomBuilderOutput: function(test) {
+    'use strict';
     test.expect(2);
     var config = {
       builder: {lodash:{include: ['each']}}
@@ -133,7 +138,8 @@ exports['require'] = {
   },
 
   // test the output of the jQuery builder
-  testjQueryCustomBuilderOutput: function (test) {
+  testjQueryCustomBuilderOutput: function(test) {
+    'use strict';
     test.expect(2);
     var config = {
       builder: {
