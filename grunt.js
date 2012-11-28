@@ -61,16 +61,17 @@ module.exports = function(grunt) {
   // to run some tests against them
   grunt.registerTask('setUp', function () {
     var done = this.async(),
+        util = grunt.utils || grunt.util,
         preparation = [false, false, false],
         checkForPreparation = function () {
-          if (grunt.utils._.all(preparation, grunt.utils._.identity)) {
+          if (util._.all(preparation, util._.identity)) {
             grunt.log.ok('all examples build');
             done();
           }
         };
 
     // build libglobal example
-    grunt.utils.spawn({
+    util.spawn({
       cmd: 'grunt',
       args: ['build'],
       opts: {cwd: 'examples/libglobal'}
@@ -81,7 +82,7 @@ module.exports = function(grunt) {
     });
 
     // build multipage example
-    grunt.utils.spawn({
+    util.spawn({
       cmd: 'grunt',
       args: ['build'],
       opts: {cwd: 'examples/multipage'}
@@ -92,7 +93,7 @@ module.exports = function(grunt) {
     });
 
     // build multipage-shim example
-    grunt.utils.spawn({
+    util.spawn({
       cmd: 'grunt',
       args: ['build'],
       opts: {cwd: 'examples/multipage-shim'}
