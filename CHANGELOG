@@ -1,0 +1,21 @@
+v0.1.3:
+  date: 2012-11-23
+  changes:
+    - Added testsuite
+    - Fixed issues regarding the removal of the extend method (Builds without view)
+    - Fixed issues of the Router only build not working
+
+v0.1.2:
+  date: 2012-11-22
+  changes:
+    - Fixed filename reference in package.json
+
+v0.1.1:
+  date: 2012-11-22
+  changes:
+    - ´include´ definition is now case insensitive
+
+v0.1.0:
+  date: 2012-11-22
+  changes:
+    - Initial release.
