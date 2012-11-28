@@ -3,10 +3,19 @@ module.exports = function(grunt) {
 
   // load the modules tasks itself
   grunt.loadTasks('tasks');
+  grunt.loadNpmTasks('grunt-contrib-clean');
 
   // Project configuration.
   grunt.initConfig({
     pkg: '<json:package.json>',
+
+    clean: {
+      examples: [
+        '/examples/libglobal/dist/',
+        '/examples/multipage/www-built/',
+        '/examples/multipage-shim/www-built/'
+      ]
+    },
 
     test: {
       files: ['test/**/*.js']
@@ -95,17 +104,12 @@ module.exports = function(grunt) {
 
   });
 
-  // remove the builds from the ´examples´ folder
-  grunt.registerTask('tearDown', function () {
-    console.log('tearDown');
-  });
-
   // Load local tasks.
   grunt.loadTasks('tasks');
 
   // Default task.
-  grunt.registerTask('default', 'setUp lint test qunit tearDown');
+  grunt.registerTask('default', 'setUp lint test qunit clean:examples');
 
   // TravisCI task.
-  grunt.registerTask('travis', 'setUp lint test qunit tearDown');
+  grunt.registerTask('travis', 'setUp lint test qunit  clean:examples');
 };

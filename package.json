@@ -39,7 +39,10 @@
     "grunt-jquerybuilder": "0.1.x",
     "grunt-backbonebuilder": "0.1.x"
   },
+  "devDependencies": {
+    "grunt-contrib-clean": "0.3.x"
+  },
   "keywords": [
-    "gruntplugin"
+    "gruntplugin", "requirejs"
   ]
 }
