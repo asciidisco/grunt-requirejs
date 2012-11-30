@@ -33,8 +33,9 @@ module.exports = function (grunt) {
   // each helper runs independent & has no dependencies on the other helpers
   grunt.registerMultiTask('requirejs', 'Runs requirejs optimizer', function() {
     var done = this.async();
-    var config = this.option ? this.option() : {};
+    var config = this.option ? this.option() : this.data;
 
+    // Ditch this once grunt 0.4.0 is out
     // Check grunt version, if it´s lower than 0.4,
     // check for the options key & merge
     if (semver.lt(grunt.version, '0.4.0')) {

@@ -99,7 +99,7 @@ v0.2.0:
     - Improved documentation
 
 v0.1.0:
-  commit:
-  date:
+  commit: 98a2f82b29090c0815816ff724c5eb6f9ab372d6
+  date: 2012-04-23
   changes:
     - Initial Release
