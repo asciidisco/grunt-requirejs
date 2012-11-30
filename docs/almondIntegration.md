@@ -1,11 +1,32 @@
-The only constraint for using the auto almond insertion is, that you at least define one module
-(mostly named 'main').
+# Almond
+
+## Including almond
 
 ```javascript
-// ... grunt file contents
- requirejs: {
-    std: {
-          // almond specific contents
+  requirejs: {
+    myTaskDefinition: {
+      options: {
+          // *insert almond
+          almond: true,
+          dir: 'build',
+          appDir: 'src',
+          baseUrl: 'js',
+          paths: {
+            underscore: '../vendor/underscore',
+            jquery    : '../vendor/jquery',
+            backbone  : '../vendor/backbone'
+          }
+        }
+      }
+    }
+```
+
+## Including almond & replacing ´script´ tags in html sources
+
+```javascript
+  requirejs: {
+    myTaskDefinition: {
+      options: {
           // *insert almond in all your modules
           almond: true,
           // *replace require script calls, with the almond modules
@@ -22,44 +43,46 @@ The only constraint for using the auto almond insertion is, that you at least de
           appDir: 'src',
           baseUrl: 'js',
           paths: {
-              underscore: '../vendor/underscore',
-              jquery    : '../vendor/jquery',
-              backbone  : '../vendor/backbone'
-          },
-          pragmas: {
-              doExclude: true
-          },
-          skipModuleInsertion: false,
-          optimizeAllPluginResources: true,
-          findNestedDependencies: true
+            underscore: '../vendor/underscore',
+            jquery    : '../vendor/jquery',
+            backbone  : '../vendor/backbone'
+          }
         }
+      }
     }
-// ... even more grunt file contents
 ```
+
+The only constraint for using the auto almond insertion is, that you at least define one module
+(mostly named 'main').
+
+## Special cases
+
 ### Special case, the 'out' property
 
 If you define a special output name for your generated module file,
 you have to specify a "modulePath" property inside your "replaceRequireScript" configuration
 
 ```javascript
-requirejs: {
-    std: {
+  requirejs: {
+    myTaskDefinition: {
+      options: {
         almond: true,
         replaceRequireScript: [{
-            files: ['index.html'],
-            module: 'main',
-            modulePath: '/js/main-build'
+          files: ['index.html'],
+          module: 'main',
+          modulePath: '/js/main-build'
         }],
-        baseUrl: "js",
+        baseUrl: 'js',
         paths: {
-            'Handlebars': 'libs/Handlebars',
-            'Backbone': 'libs/backbone',
-            'underscore': 'libs/underscore',
-            'json2': 'libs/json2',
+          'Handlebars': 'libs/Handlebars',
+          'Backbone': 'libs/backbone',
+          'underscore': 'libs/underscore',
+          'json2': 'libs/json2',
         },
         out: 'js/main-build.js'
+      }
     }
-}
+  }
 ```
 
 ### require function not found after almond integration
@@ -67,11 +90,13 @@ First occured in [issue #3](https://github.com/asciidisco/grunt-requirejs/issues
 You probably have to set
 
 ```javascript
-requirejs: {
-    std: {
+  requirejs: {
+    myTaskDefinition: {
+      options: {
         wrap: true
+      }
     }
-}
+  }
 ```
 
 like described here: [https://github.com/jrburke/almond#usage](https://github.com/jrburke/almond#usage)

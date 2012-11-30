@@ -52,13 +52,13 @@ For more infos please take a look at the [Almond Integration](https://github.com
 For more infos please take a look at the [Using Custom Builds](https://github.com/asciidisco/grunt-requirejs/blob/master/docs/customBuilder.md) document
 
 ## Hybrid minification
-For more infos please take a look at the [Using Custom Builds](https://github.com/asciidisco/grunt-requirejs/blob/master/docs/hybridbuilds.md) document
+For more infos please take a look at the [Using Hybrid Builds](https://github.com/asciidisco/grunt-requirejs/blob/master/docs/hybridbuilds.md) document
 
 ## Using custom r.js versions
 For more infos please take a look at the [Using Custom r.js versions](https://github.com/asciidisco/grunt-requirejs/blob/master/docs/customrjs.md) document
 
 ## Using source maps
-For more infos please take a look at the [Using Custom r.js versions](https://github.com/asciidisco/grunt-requirejs/blob/master/docs/customrjs.md) document
+For more infos please take a look at the [Using Source Maps](https://github.com/asciidisco/grunt-requirejs/blob/master/docs/sourcemaps.md) document
 
 ## Examples
 xxx
@@ -82,5 +82,5 @@ Check the [AUTHORS File](https://github.com/asciidisco/grunt-requirejs/blob/mast
 + [grunt-backbonebuilder](https://github.com/asciidisco/grunt-backbonebuilder)
 
 ## License
-Copyright (c) 2012 asciidisco
+Copyright (c) 2012 Sebastian Golasch
 Licensed under the [MIT license](https://github.com/asciidisco/grunt-requirejs/LICENSE-MIT).
