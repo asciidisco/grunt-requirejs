@@ -173,5 +173,36 @@ exports['require'] = {
     Q.fcall(almondify, config)
       .then(config.cb || function () {})
       .done();
+  },
+
+  'sourcemaps can be generated using uglify2': function(test) {
+    'use strict';
+    test.expect(0);
+    test.done();
+  },
+
+  'closure compiler can be executed': function(test) {
+    'use strict';
+    test.expect(0);
+    test.done();
+  },
+
+  'requirejs script tag can be replaced with almondified script tag': function(test) {
+    'use strict';
+    test.expect(0);
+    test.done();
+  },
+
+  'requirejs script tag can be replaced with almondified script tag & leaves attributes': function(test) {
+    'use strict';
+    test.expect(0);
+    test.done();
+  },
+
+  'multiple requirejs script tags can be replaced with almondified script tags': function(test) {
+    'use strict';
+    test.expect(0);
+    test.done();
   }
+
 };

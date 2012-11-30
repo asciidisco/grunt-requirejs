@@ -2,7 +2,24 @@ v0.3.0:
   commit:
   date: 2012-10-01
   changes:
-    -
+    - Major refactoring (grunt-requirejs now uses deferreds to execute its 'subtasks')
+    - Added a bunch of more tests
+    - META file adds & fixes (README, AUTHORS, CONTRIBUTION GUIDE, DOCS)
+    - Added .jshint & .editorconfig files
+    - Support for grunt-jquerybuilder
+    - Support for grunt-lodashbuilder
+    - Support for grunt-backbonebuilder
+    - Support for Hybrid builds
+    - requirejs is now a multitask
+    - Support for hybrid builds using
+    - Make sure to use the latest r.js version from the 2.1.x branch
+    - Custom requirejs versions can now be used by the user
+    - Grunt 0.4.0 compatibility
+    - Support for the ´removeCombined´ option, when using almond
+    - Added support for sourceMaps when using 'uglify2'
+    - Preparation for the merge with grunt-contrib-requirejs
+    - Removed not needed Dual Config
+    - Added needed code comments
 
 v0.2.14:
   commit: c6258f7a00d2fdb7927e5b9c3be3dc75546f1a98

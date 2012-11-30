@@ -1,66 +1,42 @@
-# grunt-require
+# grunt-requirejs [![Build Status](https://secure.travis-ci.org/asciidisco/grunt-requirejs.png?branch=master)](http://travis-ci.org/asciidisco/grunt-requirejs)
 
-Use [@cowboys](https://github.com/cowboy) wonderful js based optimizer [grunt](https://github.com/cowboy/grunt)
-together with [@jrburkes](https://github.com/jrburke) [r.js](https://github.com/jrburke/r.js) optimizer,
-to build your AMD based projects with grunt.
-
-Now with [almond](https://github.com/jrburke/almond) goodness.
-
-[![Build Status](https://secure.travis-ci.org/asciidisco/grunt-requirejs.png?branch=master)](http://travis-ci.org/asciidisco/grunt-requirejs)
-
-## Upgrade warning
-I removed the 'clearTarget' config option from the plugin, because i want you all
-to go to [grunt-contrib](https://github.com/gruntjs/grunt-contrib) page and use their
-'clean' task instead!
+> Optimize [require.js](http://requirejs.org/) based projects
 
 ## Getting Started
-Install this grunt plugin next to your project's [grunt.js gruntfile][getting_started] with: `npm install grunt-requirejs`
+_If you haven't used [grunt](http://gruntjs.com/) before, be sure to check out the [Getting Started](https://github.com/cowboy/grunt/blob/master/docs/getting_started.md) guide._
 
-Then add this line to your project's `grunt.js` gruntfile.
+From the same directory as your project's [Gruntfile][Getting Started] and [package.json][], install this plugin with the following command:
 
-```javascript
+```bash
+npm install grunt-requirejs
+```
+
+Once that's done, add this line to your project's Gruntfile:
+
+```js
 grunt.loadNpmTasks('grunt-requirejs');
 ```
 
-### Resources
-
-+ [grunt](https://github.com/cowboy/grunt)
-+ [getting_started](https://github.com/cowboy/grunt/blob/master/docs/getting_started.md)
-+ [requirejs](http://requirejs.org)
-+ [almond](https://github.com/jrburke/almond)
-+ [grunt-contrib](https://github.com/gruntjs/grunt-contrib)
-
 ## Documentation
-Load the grunt-requirejs task as described in 'Getting started' and add your r.js optimizer
-configuration to your grunt file:
 
-Example require js optimizer grunt file config entry:
+Example require js optimizer config entry:
 
 ```javascript
-
-// ... grunt file contents
- requirejs: {
-    std: {
-          dir: 'build',
-          appDir: 'src',
-          baseUrl: 'js',
-          paths: {
-              underscore: '../vendor/underscore',
-              jquery    : '../vendor/jquery',
-              backbone  : '../vendor/backbone'
-          },
-          pragmas: {
-              doExclude: true
-          },
-          skipModuleInsertion: false,
-          optimizeAllPluginResources: true,
-          findNestedDependencies: true
-        }
+  requirejs: {
+    mytarget: {
+      dir: 'build',
+      appDir: 'src',
+      baseUrl: 'js',
+      paths: {
+        underscore: '../vendor/underscore',
+        jquery: '../vendor/jquery',
+        backbone: '../vendor/backbone'
+      }
     }
-// ... even more grunt file contents
+  }
 ```
 
-You see, there is no difference in declaring your require config when your using your gruntfile
+You see, there is no difference in declaring your require config when your using your Gruntfile
 instead of using a separate requirejs config file.
 
 ## Almond
@@ -147,43 +123,24 @@ requirejs: {
 
 like described here: [https://github.com/jrburke/almond#usage](https://github.com/jrburke/almond#usage)
 
-## Dual Config
-By default it is assumed that your are using the optimizer for only JS or CSS not both. However should you wish to use require.js to optimize your CSS in addition to your JS, this is possible using a dual config. This will allow you to maintain your config options for both your CSS and JS under the requirejs key in your grunt.js.
-
-```javascript
-
-// ... grunt file contents
- requirejs: {
-    std: {
-      js: {
-        // config for js
-      },
-
-      css: {
-        // config for css
-      }
-
-    }
-}
-// ... even more grunt file contents
-```
-Then when calling your task you can pass as an argument the mode your wish to run the task in.
-
-```javascript
-grunt.registerTask('release', 'requirejs:css', 'requirejs:js');
-```
-
-or
-
-```javascript
-> grunt requirejs:js
-> grunt requirejs:css
-```
-
-If no argument is specified, then the task will look for the approprate config in the following order, JS, CSS and then finally it will use whatever config has been defined if neither JS or CSS is found.
+## Contributing
+If you like to file an issue or submit a pull request, please check the [contributing guidelines](https://github.com/asciidisco/grunt-requirejs/CONTRIBUTING.md)
 
 ## Release History
+Check the [Changleog](https://github.com/asciidisco/grunt-requirejs/CHANGLEOG) for more information
+
+## Contributors
+Check the [AUTHORS File](https://github.com/asciidisco/grunt-requirejs/AUTHORS.md) for more information
+
+## Resources
++ [grunt](http://gruntjs.com/)
++ [Getting Started](https://github.com/cowboy/grunt/blob/master/docs/getting_started.md)
++ [requirejs](http://requirejs.org)
++ [almond](https://github.com/jrburke/almond)
++ [grunt-lodashbuilder](https://github.com/asciidisco/grunt-lodashbuilder)
++ [grunt-jquerybuilder](https://github.com/asciidisco/grunt-jquerybuilder)
++ [grunt-backbonebuilder](https://github.com/asciidisco/grunt-backbonebuilder)
 
 ## License
 Copyright (c) 2012 asciidisco
-Licensed under the MIT license.
+Licensed under the [MIT license](https://github.com/asciidisco/grunt-requirejs/LICENSE-MIT).
