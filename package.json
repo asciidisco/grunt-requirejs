@@ -25,7 +25,7 @@
     "node": ">=0.8.0"
   },
   "scripts": {
-    "test": "grunt travis --verbose"
+    "test": "grunt --verbose"
   },
   "dependencies": {
     "grunt": "0.3.x",
@@ -35,12 +35,14 @@
     "gzip-js": "0.3.x",
     "q": "0.8.x",
     "temp": "0.4.x",
+    "semver": "1.1.x",
     "grunt-lodashbuilder": "0.1.x",
     "grunt-jquerybuilder": "0.1.x",
     "grunt-backbonebuilder": "0.1.x"
   },
   "devDependencies": {
-    "grunt-contrib-clean": "0.3.x"
+    "grunt-contrib-clean": "0.3.x",
+    "grunt-contrib-copy": "0.3.x"
   },
   "keywords": [
     "gruntplugin", "requirejs"

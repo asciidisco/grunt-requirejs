@@ -1,10 +1,6 @@
 module.exports = function(grunt) {
   'use strict';
 
-  // load the modules tasks itself
-  grunt.loadTasks('tasks');
-  grunt.loadNpmTasks('grunt-contrib-clean');
-
   // Project configuration.
   grunt.initConfig({
     pkg: '<json:package.json>',
@@ -12,13 +8,61 @@ module.exports = function(grunt) {
     clean: {
       examples: [
         '/examples/libglobal/dist/',
+        '/examples/libglobal-hybrid/dist/',
         '/examples/multipage/www-built/',
         '/examples/multipage-shim/www-built/'
-      ]
+      ],
+      tmp: ['tmp']
+    },
+
+    copy: {
+      dist: {
+        files: {
+          'tmp/doNotKillAlmond/': 'test/fixtures/*.js'
+        }
+      }
+    },
+
+    // Configuration to be run (and then tested).
+    requirejs: {
+      compile: {
+        options: {
+          baseUrl: 'test/fixtures',
+          name: 'project',
+          out: 'tmp/requirejs.js'
+        }
+      },
+      rmCombined: {
+        options: {
+          baseUrl: 'tmp/doNotKillAlmond',
+          name: 'project',
+          out: 'tmp/requirejs-killed.js',
+          almond: true,
+          removeCombined: true
+        }
+      },
+      template: {
+        options: {
+          baseUrl: 'test/fixtures',
+          name: 'project',
+          out: 'tmp/requirejs-template.js'
+        }
+      },
+      sourcemaps: {
+        options: {
+          baseUrl: 'test/fixtures',
+          name: 'project',
+          out: 'tmp/requirejs-sourcemaps.js',
+          optimize: "uglify2",
+          generateSourceMaps: true,
+          preserveLicenseComments: false,
+          useSourceUrl: true
+        }
+      }
     },
 
     test: {
-      files: ['test/require_test.js']
+      files: ['test/*_test.js']
     },
 
     qunit: {
@@ -59,10 +103,10 @@ module.exports = function(grunt) {
 
   // build all the projects from the ´examples´ folder
   // to run some tests against them
-  grunt.registerTask('setUp', function () {
+  grunt.registerTask('buildExampleProjects', function () {
     var done = this.async(),
         util = grunt.utils || grunt.util,
-        preparation = [false, false, false],
+        preparation = [false, false, false, false],
         checkForPreparation = function () {
           if (util._.all(preparation, util._.identity)) {
             grunt.log.ok('all examples build');
@@ -73,7 +117,7 @@ module.exports = function(grunt) {
     // build libglobal example
     util.spawn({
       cmd: 'grunt',
-      args: ['build'],
+      args: ['build', '--force'],
       opts: {cwd: 'examples/libglobal'}
     }, function () {
       grunt.log.writeln('> "libglobal" example build');
@@ -81,10 +125,21 @@ module.exports = function(grunt) {
       checkForPreparation();
     });
 
+    // build libglobal-hybrid example
+    util.spawn({
+      cmd: 'grunt',
+      args: ['build', '--force'],
+      opts: {cwd: 'examples/libglobal-hybrid'}
+    }, function () {
+      grunt.log.writeln('> "libglobal-hybrid" example build');
+      preparation[3] = true;
+      checkForPreparation();
+    });
+
     // build multipage example
     util.spawn({
       cmd: 'grunt',
-      args: ['build'],
+      args: ['build', '--force'],
       opts: {cwd: 'examples/multipage'}
     }, function () {
       grunt.log.writeln('> "multipage" example build');
@@ -95,7 +150,7 @@ module.exports = function(grunt) {
     // build multipage-shim example
     util.spawn({
       cmd: 'grunt',
-      args: ['build'],
+      args: ['build', '--force'],
       opts: {cwd: 'examples/multipage-shim'}
     }, function () {
       grunt.log.writeln('> "multipage-shim" example build');
@@ -105,12 +160,14 @@ module.exports = function(grunt) {
 
   });
 
-  // Load local tasks.
+  // Load tasks.
   grunt.loadTasks('tasks');
+  grunt.loadNpmTasks('grunt-contrib-clean');
+  grunt.loadNpmTasks('grunt-contrib-copy');
+
+  // Setup the test environment task.
+  grunt.registerTask('setUp', 'buildExampleProjects copy requirejs');
 
   // Default task.
-  grunt.registerTask('default', 'setUp lint test qunit clean:examples');
-
-  // TravisCI task.
-  grunt.registerTask('travis', 'setUp lint test qunit  clean:examples');
+  grunt.registerTask('default', 'setUp lint test qunit clean');
 };

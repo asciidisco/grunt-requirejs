@@ -11,6 +11,9 @@ module.exports = function (grunt) {
 
   // External libs.
   var Q = require('q');
+  var semver = require('semver');
+  // TODO: ditch this when grunt 0.4.0 is out
+  var util = grunt.utils || grunt.util;
 
   // Path to internal libs
   var intLibPath = '../lib/';
@@ -30,6 +33,19 @@ module.exports = function (grunt) {
   // each helper runs independent & has no dependencies on the other helpers
   grunt.registerMultiTask('requirejs', 'Runs requirejs optimizer', function() {
     var done = this.async();
+    var config = this.option ? this.option() : {};
+
+    // Check grunt version, if it´s lower than 0.4,
+    // check for the options key & merge
+    if (semver.lt(grunt.version, '0.4.0')) {
+      if (this.data.options) {
+        config = this.data.options;
+      }
+
+      if (grunt.config.get('requirejs').options) {
+        config = util.extend(config, grunt.config.get('requirejs').options);
+      }
+    }
 
     // The functions only accept the plugin
     // config as a parameter & only return the config.
@@ -37,7 +53,7 @@ module.exports = function (grunt) {
     // the run or add arbitary data.
     // Calls ´done´ when all chain is comletely executed
     // Calls the ´errorhandler if an error occures during the build
-    Q.fcall(lodashCustomBuilder, this.data)
+    Q.fcall(lodashCustomBuilder, config)
       .then(jqueryCustomBuilder)
       .then(backboneCustomBuilder)
       .then(almondify)

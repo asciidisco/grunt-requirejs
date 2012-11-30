@@ -18,6 +18,7 @@ module.exports = function(grunt) {
 
         requirejs: {
             std: {
+              options: {
                 appDir: "www",
                 baseUrl: "js/lib",
                 paths: {
@@ -62,6 +63,7 @@ module.exports = function(grunt) {
                     }
                 ]
             }
+          }
         },
 
         jshint: {

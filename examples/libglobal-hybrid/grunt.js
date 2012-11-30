@@ -27,6 +27,7 @@ module.exports = function(grunt) {
                 include: ["principium"],
                 exclude: ["jquery", "underscore"],
                 out: "dist/principium.js",
+                optimize: "hybrid",
                 wrap: {
                     startFile: "wrap/wrap.start",
                     endFile: "wrap/wrap.end"

@@ -1,0 +1,10 @@
+
+eval("define(\'hello\',[],function(){return \"hello\";});\n\n//@ sourceURL=/hello.js");
+
+eval("define(\'world\',[],function(){return \"world\";});\n\n//@ sourceURL=/world.js");
+
+require(['hello', 'world'], function(hello, world) {
+  console.log(hello,world);
+});
+
+define("project", function(){});
