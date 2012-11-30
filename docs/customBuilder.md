@@ -4,7 +4,7 @@ _grunt-requirejs supports multiple custom build options_
 
 ## General information
 
-´´´javascript
+```javascript
   requirejs: {
     mytarget: {
       options: {
@@ -26,41 +26,42 @@ _grunt-requirejs supports multiple custom build options_
       }
     }
   }
-´´´
+```
 
 ## Lo-Dash
 
-´´´javascript
+```javascript
   builder: {
     lodash: {
       modifier: 'backbone',
       alias: 'underscore'
     }
   }
-´´´
+```
 
 ## jQuery
 
-´´´javascript
+```javascript
   builder: {
     jquery: {
       exclude: ['deprecated', 'effects']
     }
   }
-´´´
+```
 
 ## Backbone
 
-´´´javascript
+```javascript
   builder: {
     backbone: {
       include: ['Collection', 'Model', 'View', 'Events']
     }
   }
-´´´
+```
+
 ## Using multiple builds at once
 
-´´´javascript
+```javascript
   builder: {
     lodash: {
       modifier: 'backbone',
@@ -73,4 +74,4 @@ _grunt-requirejs supports multiple custom build options_
       include: ['Collection', 'Model', 'View', 'Events']
     }
   }
-´´´
+```
