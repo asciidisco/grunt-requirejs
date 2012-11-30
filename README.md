@@ -124,13 +124,13 @@ requirejs: {
 like described here: [https://github.com/jrburke/almond#usage](https://github.com/jrburke/almond#usage)
 
 ## Contributing
-If you like to file an issue or submit a pull request, please check the [contributing guidelines](https://github.com/asciidisco/grunt-requirejs/CONTRIBUTING.md)
+If you like to file an issue or submit a pull request, please check the [contributing guidelines](https://github.com/asciidisco/grunt-requirejs/blob/master/CONTRIBUTION.md)
 
 ## Release History
-Check the [Changleog](https://github.com/asciidisco/grunt-requirejs/CHANGLEOG) for more information
+Check the [Changleog](https://github.com/asciidisco/grunt-requirejs/blob/master/CHANGELOG) for more information
 
 ## Contributors
-Check the [AUTHORS File](https://github.com/asciidisco/grunt-requirejs/AUTHORS.md) for more information
+Check the [AUTHORS File](https://github.com/asciidisco/grunt-requirejs/blob/master/AUTHORS.md) for more information
 
 ## Resources
 + [grunt](http://gruntjs.com/)
