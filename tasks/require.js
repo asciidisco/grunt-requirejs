@@ -43,6 +43,7 @@ module.exports = function (grunt) {
       .then(almondify)
       .then(optimize)
       .then(replaceAlmondInHtmlFiles)
+      .then(this.data.cb || function () {})
       .fail(errorHandler.bind({done: done}))
       .fin(done)
       .done();

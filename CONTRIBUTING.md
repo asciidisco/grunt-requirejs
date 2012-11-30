@@ -26,9 +26,15 @@ Assuming that you don't see any red, you're ready to go. Just be sure to run `gr
 1. Create a new branch, please don't work in your `master` or `devel` branch directly.
 2. Add failing tests for the change you want to make. Run `grunt` to see the tests fail.
 3. Fix stuff.
-4. Run `grunt travis` to see if the tests pass. Repeat steps 2-4 until done.
+4. Run `grunt` to see if the tests pass. Repeat steps 2-4 until done.
 5. Update the documentation to reflect any changes.
 6. Push to your fork and submit a pull request.
+
+### Adding tests
+Tests are written in NodeUnit & QUnit style.
+NodeUnit tests can be run using the ´grunt test´ command.
+The tests from the examples directory can be run using ´grunt qunit´, but make sure
+you are running ´grunt setUp´ before & ´grunt tearDown´ afterwards.
 
 ### Syntax
 

@@ -123,9 +123,9 @@ exports['require'] = {
   // test the output of the lodash builder
   testLodashCustomBuilderOutput: function(test) {
     'use strict';
-    test.expect(2);
+    test.expect(2) ;
     var config = {
-      builder: {lodash:{include: ['each']}}
+      builder: {lodash: {include: ['each'] } }
     };
 
     Q.fcall(lodashCustomBuilder, config)
@@ -158,19 +158,20 @@ exports['require'] = {
       .done();
   },
 
-  /*'almond helper runs callback even if almond: false': function(test) {
+  'almond helper runs callback even if almond: false': function(test) {
     'use strict';
-    var wasCalled = false;
+    test.expect(1);
     var config = {
       modules: [],
       almond: false,
       cb: function() {
-        wasCalled = true;
+        test.equal(true, true);
+        test.done();
       }
     };
 
-    almondify(config);
-    test.equal(true, wasCalled);
-    test.done();
-  }*/
+    Q.fcall(almondify, config)
+      .then(config.cb || function () {})
+      .done();
+  }
 };

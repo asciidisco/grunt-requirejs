@@ -183,52 +183,6 @@ or
 If no argument is specified, then the task will look for the approprate config in the following order, JS, CSS and then finally it will use whatever config has been defined if neither JS or CSS is found.
 
 ## Release History
-### 0.3.0
-+ fixes package.json dependecy versions
-
-### 0.2.13
-+ fixes package.json dependecy versions
-
-### 0.2.12
-+ fixes issue of r.js almond-based dependency mixup (added by @chrissrogers)
-
-### 0.2.11
-+ Fixed issue #17 (almond: false, causes build to fail)
-+ Added example projects
-
-### 0.2.10
-+ Fixed issue #4
-+ Fixed issue #8
-
-### 0.2.9
-+ Removed jQuery dependency and replaced it with cheerio
-+ Updated versions of 3rd party libs
-
-### 0.2.8
-+ RequireJS Version bump to 2.0
-
-### 0.2.7
-+ Removed npm dependency for tracing the almond file
-+ Added some informations in the readme about the almond 'wrap=true'
-
-### 0.2.6
-+ Added 'modulePath' configuration option for specifying your modules path
-+ Added 'modulePath' documentation
-
-### 0.2.5
-+ Added dual config
-+ Optimized almond integration (removed npm dependency)
-+ Readme updates
-+ requirejs isnt a multi task anymore
-
-### 0.2.0
-+ Removed clearTarget (use grunt-contrib clean instead)
-+ Added [almond](https://github.com/jrburke/almond) integration
-+ Added automatic almond js module script tag replacement for html files
-+ Improved documentation
-
-### 0.1.0
-+ Initial Release
 
 ## License
 Copyright (c) 2012 asciidisco
