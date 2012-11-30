@@ -31,19 +31,17 @@ This controls how this task (and its helpers) operate and should contain key:val
 
 For a full list of possible options, [see the r.js example build file](https://github.com/jrburke/r.js/blob/master/build/example.build.js).
 
-## Usage
-
-### Basic
+## Config Example
 
 Example require js optimizer config entry:
 
 ```javascript
   requirejs: {
-    mytarget: {
+    compile: {
       options: {
-        baseUrl: 'myproject',
-        name: 'project',
-        out: 'build/project-built.js'
+        baseUrl: "path/to/base",
+        mainConfigFile: "path/to/config.js",
+        out: "path/to/optimized.js"
       }
     }
   }
