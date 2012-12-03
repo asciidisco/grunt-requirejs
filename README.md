@@ -63,7 +63,7 @@ For more infos please take a look at the [Using Custom Builds](https://github.co
 ## Hybrid minification
 _grunt-requirejs can minify your optimized output files using an hybrid strategy utilitizing uglifyjs & closure compiler_
 
-For more infos please take a look at the [Using Hybrid Builds](https://github.com/asciidisco/grunt-requirejs/blob/master/docs/hybridbuilds.md) document
+For more infos please take a look at the [Using Hybrid Builds](https://github.com/asciidisco/grunt-requirejs/blob/master/docs/hybridBuilds.md) document
 
 ## Using custom r.js versions
 _grunt-requirejs lets you specify a custom r.js for your build_

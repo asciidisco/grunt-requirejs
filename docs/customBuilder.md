@@ -47,7 +47,7 @@ If not set, the builders default to 'jquery', 'backbone' & 'lodash'.
 
 ## Lo-Dash
 
-See all available options [here](https://gihtub.com/asciidisco/grunt-lodashbuilder)
+See all available options [here](https://github.com/asciidisco/grunt-lodashbuilder)
 
 ```javascript
   builder: {
@@ -60,7 +60,7 @@ See all available options [here](https://gihtub.com/asciidisco/grunt-lodashbuild
 
 ## jQuery
 
-See all available options [here](https://gihtub.com/asciidisco/grunt-jquerybuilder)
+See all available options [here](https://github.com/asciidisco/grunt-jquerybuilder)
 
 ```javascript
   builder: {
@@ -72,7 +72,7 @@ See all available options [here](https://gihtub.com/asciidisco/grunt-jquerybuild
 
 ## Backbone
 
-See all available options [here](https://gihtub.com/asciidisco/grunt-backbonebuilder)
+See all available options [here](https://github.com/asciidisco/grunt-backbonebuilder)
 
 ```javascript
   builder: {
