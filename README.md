@@ -80,7 +80,7 @@ For more infos please take a look at the [Using Source Maps](https://github.com/
 There are some project & configuration examples to get you startet:
 
   - [libglobal](https://github.com/asciidisco/grunt-requirejs/tree/master/examples/libglobal)
-  - [libgloabl-hybrid](https://github.com/asciidisco/grunt-requirejs/tree/master/examples/libglobal-hybrid)
+  - [libglobal-hybrid](https://github.com/asciidisco/grunt-requirejs/tree/master/examples/libglobal-hybrid)
   - [multipage](https://github.com/asciidisco/grunt-requirejs/tree/master/examples/mutlipage)
   - [multipage-shim](https://github.com/asciidisco/grunt-requirejs/tree/master/examples/multipage-shim)
 
