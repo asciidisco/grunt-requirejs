@@ -1,8 +1,23 @@
 # Almond
 
+If you like to replace require.js with almond.js during the build process, grunt-requirejs comes with an [almond](https://github.com/jrburke/almond) injection mode.
+It even can be used to convert your require script calls in your html files to call the 'almondyfied' module, instead of calling require.js
+that then calls (e.g. loads) the module.
+
+## Options
+
+### almond ```boolean``` (optional)
+
+This is used indicate if grunt-requirejs should include almond in your combined js file.
+
+
+### replaceRequireScript ```array``` (optional)
+
+This is used to define the files where the script tag attributes should be replaced
+and which modules should be taken into account.
+
 ## Including almond
 
-```javascript
   requirejs: {
     myTaskDefinition: {
       options: {
@@ -22,6 +37,9 @@
 ```
 
 ## Including almond & replacing ´script´ tags in html sources
+
+grunt-requirejs is also capable of automatically changing the src attribute
+in your html script tags.
 
 ```javascript
   requirejs: {

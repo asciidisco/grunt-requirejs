@@ -51,32 +51,45 @@ You see, there is no difference in declaring your require config when your using
 instead of using a separate requirejs config file.
 
 ## Almond
-If you like to replace require.js with almond.js during the build process, grunt-requirejs comes with an [almond](https://github.com/jrburke/almond) injection mode.
-It even can be used to convert your require script calls in your html files to call the 'almondyfied' module, instead of calling require.js
-that then calls (e.g. loads) the module.
+_grunt-requirejs is capable of replacing require.js with almond.js automatically_
 
 For more infos please take a look at the [Almond Integration](https://github.com/asciidisco/grunt-requirejs/blob/master/docs/almondIntegration.md) document
 
 ## Custom builds
+_grunt-requirejs can generate custom jQuery, Lo-Dash & Backbone.js versions during the optimization_
+
 For more infos please take a look at the [Using Custom Builds](https://github.com/asciidisco/grunt-requirejs/blob/master/docs/customBuilder.md) document
 
 ## Hybrid minification
+_grunt-requirejs can minify your optimized output files using an hybrid strategy utilitizing uglifyjs & closure compiler_
+
 For more infos please take a look at the [Using Hybrid Builds](https://github.com/asciidisco/grunt-requirejs/blob/master/docs/hybridbuilds.md) document
 
 ## Using custom r.js versions
+_grunt-requirejs lets you specify a custom r.js for your build_
+
 For more infos please take a look at the [Using Custom r.js versions](https://github.com/asciidisco/grunt-requirejs/blob/master/docs/customrjs.md) document
 
 ## Using source maps
+_grunt-requirejs can generate sourcemaps when using the r.js v2.1.2 or higher_
+
 For more infos please take a look at the [Using Source Maps](https://github.com/asciidisco/grunt-requirejs/blob/master/docs/sourcemaps.md) document
 
 ## Examples
-xxx
+
+There are some project & configuration examples to get you startet:
+
+  - [libglobal](https://github.com/asciidisco/grunt-requirejs/tree/master/examples/libglobal)
+  - [libgloabl-hybrid](https://github.com/asciidisco/grunt-requirejs/tree/master/examples/libglobal-hybrid)
+  - [multipage](https://github.com/asciidisco/grunt-requirejs/tree/master/examples/mutlipage)
+  - [multipage-shim](https://github.com/asciidisco/grunt-requirejs/tree/master/examples/multipage-shim)
+
 
 ## Release History
 Check the [Changleog](https://github.com/asciidisco/grunt-requirejs/blob/master/CHANGELOG) for more information
 
 ## Contributing
-If you like to file an issue or submit a pull request, please check the [contributing guidelines](https://github.com/asciidisco/grunt-requirejs/blob/master/CONTRIBUTION.md)
+If you like to file an issue or submit a pull request, please check the [contributing guidelines](https://github.com/asciidisco/grunt-requirejs/blob/master/CONTRIBUTING.md)
 
 ## Contributors
 Check the [AUTHORS File](https://github.com/asciidisco/grunt-requirejs/blob/master/AUTHORS.md) for more information

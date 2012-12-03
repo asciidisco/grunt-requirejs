@@ -19,7 +19,7 @@ v0.3.0:
     - Added support for sourceMaps when using 'uglify2'
     - Preparation for the merge with grunt-contrib-requirejs
     - Removed not needed Dual Config
-    - Added needed code comments
+    - Added code comments
 
 v0.2.14:
   commit: c6258f7a00d2fdb7927e5b9c3be3dc75546f1a98
