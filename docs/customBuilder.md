@@ -29,7 +29,7 @@ If not set, the builders default to 'jquery', 'backbone' & 'lodash'.
         // this will be inlined in the optimizers output file
         builder: {
           jQuery: {
-            excude: ['css']
+            exclude: ['css']
           }
         },
         dir: 'build',
