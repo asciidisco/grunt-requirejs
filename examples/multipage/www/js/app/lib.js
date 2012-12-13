@@ -3,5 +3,5 @@ define(['jquery'], function ($) {
         getBody: function () {
             return $('body');
         }
-    }
+    };
 });

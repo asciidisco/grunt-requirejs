@@ -1,6 +1,10 @@
 /node_modules/
 /examples/libglobal/dist/
+/examples/libglobal-hybrid/dist/
 /examples/multipage/www-built/
 /examples/multipage-shim/www-built/
 /examples/libglobal/node_modules/
+/examples/libglobal-hybrid/node_modules/
+/examples/multipage/node_modules/
+/examples/multipage-shim/node_modules/
 .DS_Store

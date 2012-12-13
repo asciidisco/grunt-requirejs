@@ -1,5 +1,5 @@
 {
-  "name": "grunt-requirejs-libglobal-example",
+  "name": "grunt-requirejs-libglobalhybrid-example",
   "version": "0.1.0",
   "engines": {
     "node": ">=0.6.0"
@@ -9,8 +9,10 @@
     "test": "grunt qunit"
   },
   "dependencies": {
-    "grunt": ">=0.3.15",
-    "grunt-requirejs": ">=0.2.10"
+    "grunt": "0.4.x",
+    "grunt-requirejs": "0.3.x",
+    "grunt-contrib-jshint": "0.1.x",
+    "grunt-contrib-qunit": "0.1.x"
   },
   "amd": {},
   "volo": {

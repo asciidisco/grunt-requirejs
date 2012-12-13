@@ -42,7 +42,10 @@
   },
   "devDependencies": {
     "grunt-contrib-clean": "0.3.x",
-    "grunt-contrib-copy": "0.3.x"
+    "grunt-contrib-copy": "0.3.x",
+    "grunt-contrib-jshint": "0.1.x",
+    "grunt-contrib-nodeunit": "0.1.x",
+    "grunt-contrib-qunit": "0.1.x"
   },
   "keywords": [
     "gruntplugin", "requirejs"

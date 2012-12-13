@@ -61,16 +61,12 @@ module.exports = function(grunt) {
       }
     },
 
-    test: {
-      files: ['test/*_test.js']
+    nodeunit: {
+      all: ['test/*_test.js']
     },
 
     qunit: {
-      files: ['examples/**/tests/*.html']
-    },
-
-    lint: {
-      files: ['grunt.js', 'tasks/**/*.js', 'test/require_test.js', 'lib/**/*.js']
+      all: ['examples/**/tests/*.html']
     },
 
     watch: {
@@ -91,13 +87,14 @@ module.exports = function(grunt) {
         boss: true,
         eqnull: true,
         node: true,
-        es5: true
+        es5: true,
+        globals: {
+          exports: true,
+          require: true,
+          module: true
+        },
       },
-      globals: {
-        exports: true,
-        require: true,
-        module: true
-      }
+      all: ['grunt.js', 'tasks/**/*.js', 'test/require_test.js', 'lib/**/*.js']
     }
   });
 
@@ -164,10 +161,13 @@ module.exports = function(grunt) {
   grunt.loadTasks('tasks');
   grunt.loadNpmTasks('grunt-contrib-clean');
   grunt.loadNpmTasks('grunt-contrib-copy');
+  grunt.loadNpmTasks('grunt-contrib-jshint');
+  grunt.loadNpmTasks('grunt-contrib-nodeunit');
+  grunt.loadNpmTasks('grunt-contrib-qunit');
 
   // Setup the test environment task.
   grunt.registerTask('setUp', ['buildExampleProjects', 'copy', 'requirejs']);
 
   // Default task.
-  grunt.registerTask('default', ['setUp', 'lint', 'test', 'qunit', 'clean']);
+  grunt.registerTask('default', ['setUp', 'jshint', 'nodeunit', 'qunit', 'clean']);
 };
