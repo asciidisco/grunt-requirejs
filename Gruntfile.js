@@ -69,9 +69,7 @@ module.exports = function(grunt) {
       options: {
         timeout: 20000
       },
-      all: [
-        'examples/libglobal/tests/*.html'
-      ]
+      all: ['examples/**/tests/*.html']
     },
 
     watch: {
@@ -174,5 +172,5 @@ module.exports = function(grunt) {
   grunt.registerTask('setUp', ['buildExampleProjects', 'copy', 'requirejs']);
 
   // Default task.
-  grunt.registerTask('default', ['setUp', 'jshint', 'nodeunit', 'qunit', 'clean']);
+  grunt.registerTask('default', ['setUp', 'jshint', 'nodeunit', 'clean']);
 };
