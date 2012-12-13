@@ -2,4 +2,5 @@
 /examples/libglobal/dist/
 /examples/multipage/www-built/
 /examples/multipage-shim/www-built/
+/examples/libglobal/node_modules/
 .DS_Store
