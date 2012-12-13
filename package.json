@@ -1,7 +1,7 @@
 {
   "name": "grunt-requirejs",
   "description": "Building require.js based applications with grunt",
-  "version": "0.3.0",
+  "version": "0.3.1",
   "homepage": "https://github.com/asciidisco/grunt-requirejs",
   "author": {
     "name": "Sebastian Golasch",
