@@ -1,5 +1,12 @@
+v0.3.1:
+  date: 2012-12-13
+  changes:
+    - Fixes #40 (Error messages eaten by 0.3.0)
+    - Fixes #36 (npm issue installing grunt-requirejs 0.3.0)
+    - Fixes #38 (Task won't run anymore on v0.3.0)
+    - Examples are now converted to grunt 0.4.0
+
 v0.3.0:
-  commit: c7c2dbc1f4a1eb2cc606ccaa3d41bf10f1b699bb
   date: 2012-12-03
   changes:
     - Major refactoring (grunt-requirejs now uses deferreds to execute its 'subtasks')
@@ -22,66 +29,56 @@ v0.3.0:
     - Added code comments
 
 v0.2.14:
-  commit: c6258f7a00d2fdb7927e5b9c3be3dc75546f1a98
   date: 2012-10-01
   changes:
     - fixes package.json dependecy versions
 
 v0.2.13:
-  commit: ad323ceba047a8013743e289b979ce49ac1b4bb1
   date: 2012-10-01
   changes:
     - fixes according to the changes from the last cheerio release
 
 v0.2.12:
-  commit: f3e1b00e2b60d95b7416515a26871632140e036b
   date: 2012-09-25
   changes:
     - fixes issue of r.js almond-based dependency mixup (added by @chrissrogers)
 
 v0.2.11:
-  commit: 85d8f22c821f237546be5bc48f94f6437c46f480
   date: 2012-09-13
   changes:
     - Fixed issue #17 (almond: false, causes build to fail)
     - Added example projects
 
 v0.2.10:
-  commit: 8ec0309075de55371f030742a3dd4fe6d9b30c16
   date: 2012-09-10
   changes:
     - Fixed issue #4
     - Fixed issue #8
 
 v0.2.9:
-  commit: e61c4ec1965747a2f25f4130dc48c6afdc4c3229
   date: 2012-07-10
   changes:
     - Removed jQuery dependency and replaced it with cheerio
     - Updated versions of 3rd party libs
 
 v0.2.8:
-  commit: ef4f28bcfbed595f8d732096047241251678c915
   date: 2012-05-29
   changes:
     - RequireJS Version bump to 2.0
 
 v0.2.7:
-  commit: 05f5c8b67e6e89c505de47e7c64bfe823d8b56ea
   date: 2012-05-29
   changes:
     - Removed npm dependency for tracing the almond file
     - Added some informations in the readme about the almond 'wrap=true'
 
 v0.2.6:
-  commit: 52096b00d5b56d40b4fb4f5057090471206a4523
   date: 2012-05-21
   changes:
     - Added 'modulePath' configuration option for specifying your modules path
     - Added 'modulePath' documentation
 
 v0.2.5:
-  commit: ef75f324a0d80667fcb0d4947f031f736767ea51
   date: 2012-05-20
   changes:
     - Added dual config
@@ -90,7 +87,6 @@ v0.2.5:
     - requirejs isnt a multi task anymore
 
 v0.2.0:
-  commit: e8ad44718c00c089f60ae0af03a46fd526ec9d5a
   date: 2012-05-08
   changes:
     - Removed clearTarget (use grunt-contrib clean instead)
@@ -99,7 +95,6 @@ v0.2.0:
     - Improved documentation
 
 v0.1.0:
-  commit: 98a2f82b29090c0815816ff724c5eb6f9ab372d6
   date: 2012-04-23
   changes:
     - Initial Release
