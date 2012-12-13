@@ -13,7 +13,7 @@ module.exports = function (grunt) {
   var Q = require('q');
   var semver = require('semver');
   // TODO: ditch this when grunt 0.4.0 is out
-  var util = grunt.utils || grunt.util;
+  grunt.util = grunt.util || grunt.utils;
 
   // Path to internal libs
   var intLibPath = '../lib/';
