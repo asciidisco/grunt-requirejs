@@ -69,7 +69,11 @@ module.exports = function(grunt) {
       options: {
         timeout: 20000
       },
-      all: ['examples/**/tests/*.html']
+      all: [
+        'examples/multipage/tests/*.html',
+        'examples/libglobal/tests/*.html',
+        'examples/libglobal-hybrid/tests/*.html'
+      ]
     },
 
     watch: {
