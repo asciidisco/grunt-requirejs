@@ -195,4 +195,5 @@ module.exports = function(grunt) {
 
   // Default task.
   grunt.registerTask('default', ['setUp', 'jshint', 'nodeunit', 'qunit', 'clean']);
+  grunt.registerTask('travis', ['setUp', 'jshint', 'nodeunit', 'clean']);
 };
