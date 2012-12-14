@@ -106,7 +106,7 @@ module.exports = function(grunt) {
   grunt.registerTask('buildExampleProjects', function () {
     var done = this.async(),
         util = grunt.utils || grunt.util,
-        preparation = [false, false, false, false],
+        preparation = [false, false, false, false, false, false],
         checkForPreparation = function () {
           if (util._.all(preparation, util._.identity)) {
             grunt.log.ok('all examples build');
@@ -158,6 +158,28 @@ module.exports = function(grunt) {
       checkForPreparation();
     });
 
+    // build almond-text-plugin-project example
+    util.spawn({
+      cmd: 'grunt',
+      args: ['--force'],
+      opts: {cwd: 'examples/almond-text-plugin-project'}
+    }, function () {
+      grunt.log.writeln('> "almond-text-plugin-project" example build');
+      preparation[4] = true;
+      checkForPreparation();
+    });
+
+    // build almond-text-plugin-singelfile example
+    util.spawn({
+      cmd: 'grunt',
+      args: ['--force'],
+      opts: {cwd: 'examples/almond-text-plugin-singelfile'}
+    }, function () {
+      grunt.log.writeln('> "almond-text-plugin-singelfile" example build');
+      preparation[5] = true;
+      checkForPreparation();
+    });
+
   });
 
   // Load tasks.
@@ -172,5 +194,5 @@ module.exports = function(grunt) {
   grunt.registerTask('setUp', ['buildExampleProjects', 'copy', 'requirejs']);
 
   // Default task.
-  grunt.registerTask('default', ['setUp', 'jshint', 'nodeunit', 'clean']);
+  grunt.registerTask('default', ['setUp', 'jshint', 'nodeunit', 'qunit', 'clean']);
 };

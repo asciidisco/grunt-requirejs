@@ -10,7 +10,9 @@
         QUnit.config.autostart = false;
         require(['tests'], function () {
             //Tests loaded, now run them.
-            QUnit.start();
+            setTimeout(function () {
+              QUnit.start();
+            }, 100);
         });
     </script>
 </head>
