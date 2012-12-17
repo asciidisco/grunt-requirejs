@@ -232,6 +232,7 @@ module.exports = function(grunt) {
   grunt.loadNpmTasks('grunt-contrib-jshint');
   grunt.loadNpmTasks('grunt-contrib-nodeunit');
   grunt.loadNpmTasks('grunt-contrib-qunit');
+  grunt.loadNpmTasks('grunt-contrib-internal');
 
   // Default task.
   grunt.registerTask('default', ['copy', 'requirejs', 'jshint', 'nodeunit', 'qunit', 'clean']);

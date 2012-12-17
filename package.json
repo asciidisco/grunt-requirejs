@@ -46,6 +46,7 @@
     "grunt-contrib-jshint": "0.1.x",
     "grunt-contrib-nodeunit": "0.1.x",
     "grunt-contrib-qunit": "0.1.x",
+    "grunt-contrib-internal": "0.1.x",
     "qunitjs": "1.10.x"
   },
   "keywords": [
