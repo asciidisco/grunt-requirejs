@@ -30,18 +30,9 @@ module.exports = function(grunt) {
 
     clean: {
       examples: [
-        'examples/almond-text-plugin-project/dist/',
-        'examples/almond-text-plugin-singlefile/dist/',
-        'examples/libglobal/dist/',
-        'examples/libglobal-hybrid/dist/',
-        'examples/multipage/www-built/',
-        'examples/multipage-shim/www-built/',
-        'examples/almond-text-plugin-project/node_modules/',
-        'examples/almond-text-plugin-singlefile/node_modules/',
-        'examples/libglobal/node_modules/',
-        'examples/libglobal-hybrid/node_modules/',
-        'examples/multipage/node_modules/',
-        'examples/multipage-shim/node_modules/'
+        'examples/**/dist/',
+        'examples/**/www-built/',
+        'examples/**/node_modules/'
       ],
       tmp: ['tmp']
     },
