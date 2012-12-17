@@ -1,44 +1,11 @@
-module.exports = function (grunt) {
+ module.exports = function (grunt) {
   'use strict';
 
   grunt.initConfig({
 
     jshint: {
       options: {
-        undef: true,
-        scripturl: true,
-        eqnull: true,
-        browser: true,
-        noarg: true,
-        trailing: true,
-        latedef: true,
-        eqeqeq: true,
-        immed: true,
-        newcap: true,
-        noempty: true,
-        strict: true,
-        es5: true,
-        globals: {
-          console: true,
-          module: true,
-          require: true,
-          define: true,
-          requirejs: true,
-          strictEqual: true,
-          QUnit: true,
-          test: true,
-          asyncTest: true,
-          ok: true,
-          equal: true,
-          notEqual: true,
-          deepEqual: true,
-          notDeepEqual: true,
-          notStrictEqual: true,
-          raises: true,
-          start: true,
-          stop: true,
-          expect: true
-        }
+        jshintrc: '.jshintrc'
       },
       all: ['Gruntfile.js', 'src/js/app/*.js', 'src/js/main.js', 'test/**/*.js']
     },
@@ -73,13 +40,11 @@ module.exports = function (grunt) {
     }
   });
 
-  // load require-js task
-  grunt.loadTasks('../../tasks');
-
   // load default grunt-contrib tasks
   grunt.loadNpmTasks('grunt-contrib-clean');
   grunt.loadNpmTasks('grunt-contrib-jshint');
   grunt.loadNpmTasks('grunt-contrib-qunit');
+  grunt.loadNpmTasks('grunt-requirejs');
 
   // register default task
   grunt.registerTask('default', ['clean', 'jshint', 'qunit', 'requirejs']);

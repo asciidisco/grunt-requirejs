@@ -3,6 +3,21 @@ module.exports = function(grunt) {
 
   grunt.initConfig({
 
+    clean: {
+      dist: ['www-built']
+    },
+
+    jshint: {
+      options: {
+        jshintrc: '.jshintrc'
+      },
+      all: ['www/js/app/*.js', 'www/js/common.js', 'www/js/page1.js', 'www/js/page2.js']
+    },
+
+    qunit: {
+      all: ['tests/index.html']
+    },
+
     requirejs: {
       std: {
         options: {
@@ -50,42 +65,13 @@ module.exports = function(grunt) {
           ]
         }
       }
-    },
-
-    jshint: {
-      options: {
-        curly: true,
-        eqeqeq: true,
-        immed: true,
-        latedef: true,
-        newcap: true,
-        noarg: true,
-        sub: true,
-        undef: true,
-        eqnull: true,
-        browser: true,
-        nomen: true,
-        globals: {
-          define: true,
-          requirejs: true,
-          require: true
-        }
-      },
-      all: ['www/js/app/*.js', 'www/js/common.js', 'www/js/page1.js', 'www/js/page2.js']
-    },
-
-    qunit: {
-      all: ['tests/index.html']
     }
   });
 
-  // replace this line with
-  // grunt.loadNpmTasks("require-js");
-  // if you use this example standalone
-  grunt.loadTasks("../../tasks");
+  grunt.loadNpmTasks('grunt-requirejs');
   grunt.loadNpmTasks('grunt-contrib-jshint');
   grunt.loadNpmTasks('grunt-contrib-qunit');
+  grunt.loadNpmTasks('grunt-contrib-clean');
 
-  grunt.registerTask('default', ['jshint', 'qunit']);
-  grunt.registerTask('build', 'requirejs');
+  grunt.registerTask('default', ['clean', 'jshint', 'requirejs', 'qunit']);
 };

@@ -2,17 +2,19 @@
   "name": "grunt-requirejs-multipageshim-example",
   "version": "0.1.0",
   "engines": {
-    "node": ">=0.6.0"
+    "node": ">=0.8.0"
   },
   "scripts": {
-    "build": "grunt build",
+    "build": "grunt",
     "test": "grunt qunit"
   },
   "dependencies": {
     "grunt": "0.4.x",
     "grunt-requirejs": "0.3.x",
     "grunt-contrib-jshint": "0.1.x",
-    "grunt-contrib-qunit": "0.1.x"
+    "grunt-contrib-qunit": "0.1.x",
+    "grunt-contrib-clean": "0.1.x",
+    "qunitjs": "1.10.x"
   },
   "amd": {},
   "volo": {

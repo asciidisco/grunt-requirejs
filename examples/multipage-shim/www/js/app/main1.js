@@ -1,4 +1,5 @@
 define(function (require) {
+    'use strict';
     var $ = require('jquery'),
         lib = require('./lib'),
         controller = require('./controller/c1'),

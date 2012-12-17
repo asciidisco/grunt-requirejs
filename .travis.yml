@@ -4,9 +4,3 @@ node_js: 0.8
 before_script:
   - npm install -g grunt-cli
   - npm install
-  - "cd examples/almond-text-plugin-project && npm install && cd .. && cd .."
-  - "cd examples/almond-text-plugin-singelfile && npm install && cd .. && cd .."
-  - "cd examples/libglobal && npm install && cd .. && cd .."
-  - "cd examples/libglobal-hybrid && npm install && cd .. && cd .."
-  - "cd examples/multipage && npm install && cd .. && cd .."
-  - "cd examples/multipage-shim && npm install && cd .. && cd .."

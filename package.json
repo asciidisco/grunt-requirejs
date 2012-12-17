@@ -25,7 +25,7 @@
     "node": ">=0.8.0"
   },
   "scripts": {
-    "test": "grunt travis --verbose"
+    "test": "grunt --verbose"
   },
   "dependencies": {
     "grunt": "0.4.x",
@@ -45,7 +45,8 @@
     "grunt-contrib-copy": "0.3.x",
     "grunt-contrib-jshint": "0.1.x",
     "grunt-contrib-nodeunit": "0.1.x",
-    "grunt-contrib-qunit": "0.1.x"
+    "grunt-contrib-qunit": "0.1.x",
+    "qunitjs": "1.10.x"
   },
   "keywords": [
     "gruntplugin", "requirejs"

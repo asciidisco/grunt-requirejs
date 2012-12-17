@@ -5,12 +5,43 @@ module.exports = function(grunt) {
   grunt.initConfig({
     pkg: '<json:package.json>',
 
+    nodeunit: {
+      all: ['test/*_test.js']
+    },
+
+    qunit: {
+      options: {
+        timeout: 20000
+      },
+      all: ['examples/**/tests/*.html']
+    },
+
+    watch: {
+      files: '<config:lint.files>',
+      tasks: 'default'
+    },
+
+    jshint: {
+      options: {
+        jshintrc: '.jshintrc'
+      },
+      all: ['grunt.js', 'tasks/**/*.js', 'test/require_test.js', 'lib/**/*.js']
+    },
+
     clean: {
       examples: [
-        '/examples/libglobal/dist/',
-        '/examples/libglobal-hybrid/dist/',
-        '/examples/multipage/www-built/',
-        '/examples/multipage-shim/www-built/'
+        'examples/almond-text-plugin-project/dist/',
+        'examples/almond-text-plugin-singlefile/dist/',
+        'examples/libglobal/dist/',
+        'examples/libglobal-hybrid/dist/',
+        'examples/multipage/www-built/',
+        'examples/multipage-shim/www-built/',
+        'examples/almond-text-plugin-project/node_modules/',
+        'examples/almond-text-plugin-singlefile/node_modules/',
+        'examples/libglobal/node_modules/',
+        'examples/libglobal-hybrid/node_modules/',
+        'examples/multipage/node_modules/',
+        'examples/multipage-shim/node_modules/'
       ],
       tmp: ['tmp']
     },
@@ -18,13 +49,21 @@ module.exports = function(grunt) {
     copy: {
       dist: {
         files: {
-          'tmp/doNotKillAlmond/': 'test/fixtures/*.js'
+          'tmp/doNotKillAlmond/': 'test/fixtures/*.js',
+          'examples/almond-text-plugin-project/node_modules/qunitjs/': 'node_modules/qunitjs/**/*',
+          'examples/almond-text-plugin-singlefile/node_modules/qunitjs/': 'node_modules/qunitjs/**/*',
+          'examples/almond-text-plugin-singlefile/dist/index.html': 'examples/almond-text-plugin-singlefile/src/index.html',
+          'examples/libglobal/node_modules/qunitjs/': 'node_modules/qunitjs/**/*',
+          'examples/libglobal-hybrid/node_modules/qunitjs/': 'node_modules/qunitjs/**/*',
+          'examples/multipage/node_modules/qunitjs/': 'node_modules/qunitjs/**/*',
+          'examples/multipage-shim/node_modules/qunitjs/': 'node_modules/qunitjs/**/*'
         }
       }
     },
 
     // Configuration to be run (and then tested).
     requirejs: {
+      // build projects to (node)unit test against
       compile: {
         options: {
           baseUrl: 'test/fixtures',
@@ -58,128 +97,132 @@ module.exports = function(grunt) {
           preserveLicenseComments: false,
           useSourceUrl: true
         }
-      }
-    },
-
-    nodeunit: {
-      all: ['test/*_test.js']
-    },
-
-    qunit: {
-      options: {
-        timeout: 20000
       },
-      all: ['examples/**/tests/*.html']
-    },
-
-    watch: {
-      files: '<config:lint.files>',
-      tasks: 'default'
-    },
-
-    jshint: {
-      options: {
-        curly: true,
-        eqeqeq: true,
-        immed: true,
-        latedef: true,
-        newcap: true,
-        noarg: true,
-        sub: true,
-        undef: true,
-        boss: true,
-        eqnull: true,
-        node: true,
-        es5: true,
-        globals: {
-          exports: true,
-          require: true,
-          module: true
-        },
+      // build example projects
+      'almond-text-plugin-project': {
+        options: {
+          mainConfigFile: 'examples/almond-text-plugin-project/src/js/main.js',
+          dir: 'examples/almond-text-plugin-project/dist',
+          appDir: 'examples/almond-text-plugin-project/src',
+          baseUrl: 'js',
+          module: [{name: 'main'}],
+          optimize: 'none',
+          almond: true,
+          name: 'main',
+          preserveLicenseComments: false,
+          replaceRequireScript: [{
+            files: ['examples/almond-text-plugin-project/dist/index.html'],
+            name: 'main',
+            modulePath: 'js/main'
+          }]
+        }
       },
-      all: ['grunt.js', 'tasks/**/*.js', 'test/require_test.js', 'lib/**/*.js']
-    }
-  });
-
-  // build all the projects from the ´examples´ folder
-  // to run some tests against them
-  grunt.registerTask('buildExampleProjects', function () {
-    var done = this.async(),
-        util = grunt.utils || grunt.util,
-        preparation = [false, false, false, false, false, false],
-        checkForPreparation = function () {
-          if (util._.all(preparation, util._.identity)) {
-            grunt.log.ok('all examples build');
-            done();
+      'almond-text-plugin-singlefile': {
+        options: {
+          name: 'main',
+          mainConfigFile: 'examples/almond-text-plugin-singlefile/src/js/main.js',
+          out: 'examples/almond-text-plugin-singlefile/dist/project-text-almond.js',
+          optimize: 'none',
+          almond: true,
+          replaceRequireScript: [{
+            files: ['examples/almond-text-plugin-singlefile/dist/index.html'],
+            modulePath: 'project-text-almond'
+          }]
+        }
+      },
+      libglobal: {
+        options: {
+          name: 'principium',
+          almond: true,
+          baseUrl: 'examples/libglobal/lib',
+          paths: {
+            principium: '../principium'
+          },
+          include: ['principium'],
+          exclude: ['jquery', 'underscore'],
+          out: 'examples/libglobal/dist/principium.js',
+          wrap: {
+              startFile: 'examples/libglobal/wrap/wrap.start',
+              endFile: 'examples/libglobal/wrap/wrap.end'
           }
-        };
-
-    // build libglobal example
-    util.spawn({
-      cmd: 'grunt',
-      args: ['build', '--force'],
-      opts: {cwd: 'examples/libglobal'}
-    }, function () {
-      grunt.log.writeln('> "libglobal" example build');
-      preparation[0] = true;
-      checkForPreparation();
-    });
-
-    // build libglobal-hybrid example
-    util.spawn({
-      cmd: 'grunt',
-      args: ['build', '--force'],
-      opts: {cwd: 'examples/libglobal-hybrid'}
-    }, function () {
-      grunt.log.writeln('> "libglobal-hybrid" example build');
-      preparation[3] = true;
-      checkForPreparation();
-    });
-
-    // build multipage example
-    util.spawn({
-      cmd: 'grunt',
-      args: ['build', '--force'],
-      opts: {cwd: 'examples/multipage'}
-    }, function () {
-      grunt.log.writeln('> "multipage" example build');
-      preparation[1] = true;
-      checkForPreparation();
-    });
-
-    // build multipage-shim example
-    util.spawn({
-      cmd: 'grunt',
-      args: ['build', '--force'],
-      opts: {cwd: 'examples/multipage-shim'}
-    }, function () {
-      grunt.log.writeln('> "multipage-shim" example build');
-      preparation[2] = true;
-      checkForPreparation();
-    });
-
-    // build almond-text-plugin-project example
-    util.spawn({
-      cmd: 'grunt',
-      args: ['--force'],
-      opts: {cwd: 'examples/almond-text-plugin-project'}
-    }, function () {
-      grunt.log.writeln('> "almond-text-plugin-project" example build');
-      preparation[4] = true;
-      checkForPreparation();
-    });
-
-    // build almond-text-plugin-singelfile example
-    util.spawn({
-      cmd: 'grunt',
-      args: ['--force'],
-      opts: {cwd: 'examples/almond-text-plugin-singelfile'}
-    }, function () {
-      grunt.log.writeln('> "almond-text-plugin-singelfile" example build');
-      preparation[5] = true;
-      checkForPreparation();
-    });
-
+        }
+      },
+      'libglobal-hybrid': {
+        options: {
+          name: 'principium',
+          almond: true,
+          baseUrl: 'examples/libglobal-hybrid/lib',
+          paths: {
+            principium: '../principium'
+          },
+          include: ['principium'],
+          exclude: ['jquery', 'underscore'],
+          out: 'examples/libglobal-hybrid/dist/principium.js',
+          optimize: 'hybrid',
+          wrap: {
+            startFile: 'examples/libglobal-hybrid/wrap/wrap.start',
+            endFile: 'examples/libglobal-hybrid/wrap/wrap.end'
+          }
+        }
+      },
+      multipage: {
+        options: {
+          appDir: 'examples/multipage/www',
+          baseUrl: 'js/lib',
+          paths: {
+              app: '../app'
+          },
+          dir: 'examples/multipage/www-built',
+          modules: [
+            {
+              name: '../common',
+              include: [
+                'jquery',
+                'app/lib',
+                'app/controller/Base',
+                'app/model/Base'
+              ]
+            },
+            {
+              name: '../page1',
+              include: ['app/main1'],
+              exclude: ['../common']
+            },
+            {
+              name: "../page2",
+              include: ["app/main2"],
+              exclude: ["../common"]
+            }
+          ]
+        }
+      },
+      'multipage-shim': {
+        options: {
+          appDir: 'examples/multipage-shim/www',
+          mainConfigFile: 'examples/multipage-shim/www/js/common.js',
+          dir: 'examples/multipage-shim/www-built',
+          modules: [
+            {
+              name: '../common',
+              include: [
+                'jquery',
+                'app/lib',
+                'app/controller/Base',
+                'app/model/Base'
+              ]
+            },
+            {
+                name: 'app/main1',
+                exclude: ['../common']
+            },
+            {
+                name: 'app/main2',
+                exclude: ['../common']
+            }
+          ]
+        }
+      }
+    }
   });
 
   // Load tasks.
@@ -190,10 +233,6 @@ module.exports = function(grunt) {
   grunt.loadNpmTasks('grunt-contrib-nodeunit');
   grunt.loadNpmTasks('grunt-contrib-qunit');
 
-  // Setup the test environment task.
-  grunt.registerTask('setUp', ['buildExampleProjects', 'copy', 'requirejs']);
-
   // Default task.
-  grunt.registerTask('default', ['setUp', 'jshint', 'nodeunit', 'qunit', 'clean']);
-  grunt.registerTask('travis', ['setUp', 'jshint', 'nodeunit', 'clean']);
+  grunt.registerTask('default', ['copy', 'requirejs', 'jshint', 'nodeunit', 'qunit', 'clean']);
 };

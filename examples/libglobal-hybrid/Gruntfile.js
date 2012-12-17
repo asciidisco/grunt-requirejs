@@ -1,60 +1,48 @@
 /*global module:false*/
 module.exports = function(grunt) {
 
-    grunt.initConfig({
+  grunt.initConfig({
 
-        qunit: {
-          all: ["tests/*.html"]
-        },
+    clean: {
+      dist: ['dist']
+    },
 
-        requirejs: {
-          std: {
-            options: {
-              almond: true,
-              baseUrl: 'lib',
-              paths: {
-                principium: '../principium'
-              },
-              include: ['principium'],
-              exclude: ['jquery', 'underscore'],
-              out: 'dist/principium.js',
-              optimize: 'hybrid',
-              wrap: {
-                startFile: 'wrap/wrap.start',
-                endFile: 'wrap/wrap.end'
-              }
-            }
-          }
-        },
+    qunit: {
+      all: ["tests/*.html"]
+    },
 
-        jshint: {
-          options: {
-            curly: true,
-            eqeqeq: true,
-            immed: true,
-            latedef: true,
-            newcap: true,
-            noarg: true,
-            sub: true,
-            undef: true,
-            eqnull: true,
-            browser: true,
-            nomen: true,
-            globals: {
-              define: true
-            }
+    requirejs: {
+      std: {
+        options: {
+          almond: true,
+          baseUrl: 'lib',
+          paths: {
+            principium: '../principium'
           },
-          all: ['principium/*.js', 'principium.js']
+          include: ['principium'],
+          exclude: ['jquery', 'underscore'],
+          out: 'dist/principium.js',
+          optimize: 'hybrid',
+          wrap: {
+            startFile: 'wrap/wrap.start',
+            endFile: 'wrap/wrap.end'
+          }
         }
-    });
+      }
+    },
 
-    // replace this line with
-    // grunt.loadNpmTasks("require-js");
-    // if you use this example standalone
-    grunt.loadTasks('../../tasks');
-    grunt.loadNpmTasks('grunt-contrib-jshint');
-    grunt.loadNpmTasks('grunt-contrib-qunit');
+    jshint: {
+      options: {
+        jshintrc: '.jshintrc'
+      },
+      files: ['principium/*.js', 'principium.js']
+    }
+  });
 
-    grunt.registerTask('default', ['jshint', 'qunit']);
-    grunt.registerTask('build', 'requirejs');
+  grunt.loadNpmTasks('grunt-contrib-clean');
+  grunt.loadNpmTasks('grunt-contrib-jshint');
+  grunt.loadNpmTasks('grunt-contrib-qunit');
+  grunt.loadNpmTasks('grunt-requirejs');
+
+  grunt.registerTask('default', ['clean', 'jshint', 'requirejs', 'qunit']);
 };
