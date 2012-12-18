@@ -216,6 +216,13 @@ module.exports = function(grunt) {
     }
   });
 
+  grunt.registerTask('replaceTravisBadgeInReadme', function () {
+    var readme = grunt.file.read('README.md');
+    readme = readme.replace('/gruntjs/grunt-requirejs.png', '/asciidisco/grunt-requirejs.png');
+    readme = readme.replace('/gruntjs/grunt-requirejs)', '/asciidisco/grunt-requirejs)');
+    grunt.file.write('README.md', readme);
+  });
+
   // Load tasks.
   grunt.loadTasks('tasks');
   grunt.loadNpmTasks('grunt-contrib-clean');
@@ -226,5 +233,5 @@ module.exports = function(grunt) {
   grunt.loadNpmTasks('grunt-contrib-internal');
 
   // Default task.
-  grunt.registerTask('default', ['copy', 'requirejs', 'jshint', 'nodeunit', 'qunit', 'clean', 'build-contrib']);
+  grunt.registerTask('default', ['copy', 'requirejs', 'jshint', 'nodeunit', 'qunit', 'clean', 'build-contrib', 'replaceTravisBadgeInReadme']);
 };

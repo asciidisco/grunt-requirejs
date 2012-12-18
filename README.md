@@ -1,4 +1,4 @@
-# grunt-requirejs [![Build Status](https://secure.travis-ci.org/gruntjs/grunt-requirejs.png?branch=master)](http://travis-ci.org/gruntjs/grunt-requirejs)
+# grunt-requirejs [![Build Status](https://secure.travis-ci.org/asciidisco/grunt-requirejs.png?branch=master)](http://travis-ci.org/asciidisco/grunt-requirejs)
 
 > Building require.js based applications with grunt
 
