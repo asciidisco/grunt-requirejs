@@ -1,5 +1,5 @@
 v0.3.2:
-  date: 2012-12-xx
+  date: 2012-12-27
   changes:
     - Fixes #25 (Using almond results in “define is not defined” (when using the compiled main.js))
 
@@ -14,24 +14,12 @@ v0.3.1:
 v0.3.0:
   date: 2012-12-03
   changes:
-    - Major refactoring (grunt-requirejs now uses deferreds to execute its 'subtasks')
-    - Added a bunch of more tests
-    - META file adds & fixes (README, AUTHORS, CONTRIBUTION GUIDE, DOCS)
-    - Added .jshint & .editorconfig files
-    - Support for grunt-jquerybuilder
-    - Support for grunt-lodashbuilder
-    - Support for grunt-backbonebuilder
-    - Support for Hybrid builds
-    - requirejs is now a multitask
-    - Support for hybrid builds using
-    - Make sure to use the latest r.js version from the 2.1.x branch
-    - Custom requirejs versions can now be used by the user
-    - Grunt 0.4.0 compatibility
-    - Support for the ´removeCombined´ option, when using almond
-    - Added support for sourceMaps when using 'uglify2'
-    - Preparation for the merge with grunt-contrib-requirejs
-    - Removed not needed Dual Config
-    - Added code comments
+    - Major refactoring
+    - Support for custom builds
+    - Support for hybrid builds
+    - Support for custom requirejs versions
+    - Now multitask
+    - Support for removeCombined
 
 v0.2.14:
   date: 2012-10-01

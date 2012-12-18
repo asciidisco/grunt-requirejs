@@ -1,81 +1,52 @@
-# grunt-requirejs [![Build Status](https://secure.travis-ci.org/asciidisco/grunt-requirejs.png?branch=master)](http://travis-ci.org/asciidisco/grunt-requirejs)
+# grunt-requirejs [![Build Status](https://secure.travis-ci.org/gruntjs/grunt-requirejs.png?branch=master)](http://travis-ci.org/gruntjs/grunt-requirejs)
 
-> Optimize [require.js](http://requirejs.org/) based projects
+> Building require.js based applications with grunt
+
 
 ## Getting Started
-_If you haven't used [grunt](http://gruntjs.com/) before, be sure to check out the [Getting Started](https://github.com/cowboy/grunt/blob/master/docs/getting_started.md) guide._
+If you haven't used [grunt][] before, be sure to check out the [Getting Started][] guide, as it explains how to create a [gruntfile][Getting Started] as well as install and use grunt plugins. Once you're familiar with that process, install this plugin with this command:
 
-From the same directory as your project's Gruntfile and package.json, install this plugin with the following command:
-
-```bash
-npm install grunt-requirejs
+```shell
+npm install grunt-requirejs --save-dev
 ```
 
-Once that's done, add this line to your project's Gruntfile:
+[grunt]: http://gruntjs.com/
+[Getting Started]: https://github.com/gruntjs/grunt/blob/devel/docs/getting_started.md
 
-```js
-grunt.loadNpmTasks('grunt-requirejs');
-```
 
-## Overview
+## Requirejs task
+_Run this task with the `grunt requirejs` command._
 
-Inside your `grunt.js` file add a section named `requirejs`. This section specifies the options passed to [RequireJS Optimizer](http://requirejs.org/docs/optimization.html).
+_This task is a [multi task][] so any targets, files and options should be specified according to the [multi task][] documentation._
+[multi task]: https://github.com/gruntjs/grunt/wiki/Configuring-tasks
 
-### Parameters
 
-#### options ```object```
-
-This controls how this task (and its helpers) operate and should contain key:value pairs, see options below.
-
-### Options
-
-For a full list of possible options, [see the r.js example build file](https://github.com/jrburke/r.js/blob/master/build/example.build.js).
-
-## Config Example
-
-Example require js optimizer config entry:
-
-```javascript
-  requirejs: {
-    compile: {
-      options: {
-        baseUrl: "path/to/base",
-        mainConfigFile: "path/to/config.js",
-        out: "path/to/optimized.js"
-      }
-    }
-  }
-```
-
-You see, there is no difference in declaring your require config when your using your Gruntfile
-instead of using a separate requirejs config file.
-
-## Almond
+#### Almond
 _grunt-requirejs is capable of replacing require.js with almond.js automatically_
 
 For more infos please take a look at the [Almond Integration](https://github.com/asciidisco/grunt-requirejs/blob/master/docs/almondIntegration.md) document
 
-## Custom builds
+#### Custom builds
 _grunt-requirejs can generate custom jQuery, Lo-Dash & Backbone.js versions during the optimization_
 
 For more infos please take a look at the [Using Custom Builds](https://github.com/asciidisco/grunt-requirejs/blob/master/docs/customBuilder.md) document
 
-## Hybrid minification
+#### Hybrid minification
 _grunt-requirejs can minify your optimized output files using an hybrid strategy utilitizing uglifyjs & closure compiler_
 
 For more infos please take a look at the [Using Hybrid Builds](https://github.com/asciidisco/grunt-requirejs/blob/master/docs/hybridBuilds.md) document
 
-## Using custom r.js versions
+#### Using custom r.js versions
 _grunt-requirejs lets you specify a custom r.js for your build_
 
 For more infos please take a look at the [Using Custom r.js versions](https://github.com/asciidisco/grunt-requirejs/blob/master/docs/customrjs.md) document
 
-## Using source maps
+#### Using source maps
 _grunt-requirejs can generate sourcemaps when using the r.js v2.1.2 or higher_
 
 For more infos please take a look at the [Using Source Maps](https://github.com/asciidisco/grunt-requirejs/blob/master/docs/sourcemaps.md) document
 
-## Examples
+#### Examples
 
 There are some project & configuration examples to get you startet:
 
@@ -84,17 +55,7 @@ There are some project & configuration examples to get you startet:
   - [multipage](https://github.com/asciidisco/grunt-requirejs/tree/master/examples/mutlipage)
   - [multipage-shim](https://github.com/asciidisco/grunt-requirejs/tree/master/examples/multipage-shim)
 
-
-## Release History
-Check the [Changleog](https://github.com/asciidisco/grunt-requirejs/blob/master/CHANGELOG) for more information
-
-## Contributing
-If you like to file an issue or submit a pull request, please check the [contributing guidelines](https://github.com/asciidisco/grunt-requirejs/blob/master/CONTRIBUTING.md)
-
-## Contributors
-Check the [AUTHORS File](https://github.com/asciidisco/grunt-requirejs/blob/master/AUTHORS.md) for more information
-
-## Resources
+#### Resources
 + [grunt](http://gruntjs.com/)
 + [Getting Started](https://github.com/cowboy/grunt/blob/master/docs/getting_started.md)
 + [requirejs](http://requirejs.org)
@@ -103,6 +64,29 @@ Check the [AUTHORS File](https://github.com/asciidisco/grunt-requirejs/blob/mast
 + [grunt-jquerybuilder](https://github.com/asciidisco/grunt-jquerybuilder)
 + [grunt-backbonebuilder](https://github.com/asciidisco/grunt-backbonebuilder)
 
-## License
-Copyright (c) 2012 Sebastian Golasch
-Licensed under the [MIT license](https://github.com/asciidisco/grunt-requirejs/LICENSE-MIT).
+
+
+
+## Release History
+
+ * 2012-12-27   v0.3.2   Fixes
+ * 2012-12-13   v0.3.1   Fixes Fixes Fixes Examples are now converted to grunt 0.4.0
+ * 2012-12-03   v0.3.0   Major refactoring Support for custom builds Support for hybrid builds Support for custom requirejs versions Now multitask Support for removeCombined
+ * 2012-10-01   v0.2.14   fixes package.json dependecy versions
+ * 2012-10-01   v0.2.13   fixes according to the changes from the last cheerio release
+ * 2012-09-25   v0.2.12   fixes issue of r.js almond-based dependency mixup (added by @chrissrogers)
+ * 2012-09-13   v0.2.11   Fixed issue Added example projects
+ * 2012-09-10   v0.2.10   Fixed issue Fixed issue
+ * 2012-07-10   v0.2.9   Removed jQuery dependency and replaced it with cheerio Updated versions of 3rd party libs
+ * 2012-05-29   v0.2.8   RequireJS Version bump to 2.0
+ * 2012-05-29   v0.2.7   Removed npm dependency for tracing the almond file Added some informations in the readme about the almond 'wrap=true'
+ * 2012-05-21   v0.2.6   Added 'modulePath' configuration option for specifying your modules path Added 'modulePath' documentation
+ * 2012-05-20   v0.2.5   Added dual config Optimized almond integration (removed npm dependency) Readme updates requirejs isnt a multi task anymore
+ * 2012-05-08   v0.2.0   Removed clearTarget (use grunt-contrib clean instead) Added [almond](https://github.com/jrburke/almond) integration Added automatic almond js module script tag replacement for html files Improved documentation
+ * 2012-04-23   v0.1.0   Initial Release
+
+---
+
+Task submitted by [Sebastian Golasch](http://github.com/asciidisco)
+
+*This file was generated on Tue Dec 18 2012 13:47:52.*
