@@ -64,6 +64,15 @@ There are some project & configuration examples to get you startet:
 + [grunt-jquerybuilder](https://github.com/asciidisco/grunt-jquerybuilder)
 + [grunt-backbonebuilder](https://github.com/asciidisco/grunt-backbonebuilder)
 
+##### Parameters
+
+###### options ```object```
+
+This controls how this task (and its helpers) operate and should contain key:value pairs, see options below.
+
+##### Options
+
+For a full list of possible options, [see the r.js example build file](https://github.com/jrburke/r.js/blob/master/build/example.build.js).
 
 
 
@@ -89,4 +98,4 @@ There are some project & configuration examples to get you startet:
 
 Task submitted by [Sebastian Golasch](http://github.com/asciidisco)
 
-*This file was generated on Tue Dec 18 2012 13:56:49.*
+*This file was generated on Tue Dec 18 2012 15:16:16.*

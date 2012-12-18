@@ -3,8 +3,6 @@ module.exports = function(grunt) {
 
   // Project configuration.
   grunt.initConfig({
-    pkg: '<json:package.json>',
-
     nodeunit: {
       all: ['test/*_test.js']
     },
@@ -216,6 +214,8 @@ module.exports = function(grunt) {
     }
   });
 
+  // grunt-contrib-internals sets the travis-ci badge to
+  // the 'gruntjs' profile, i replace this with the path to my profile
   grunt.registerTask('replaceTravisBadgeInReadme', function () {
     var readme = grunt.file.read('README.md');
     readme = readme.replace('/gruntjs/grunt-requirejs.png', '/asciidisco/grunt-requirejs.png');
