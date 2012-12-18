@@ -69,8 +69,8 @@ There are some project & configuration examples to get you startet:
 
 ## Release History
 
- * 2012-12-27   v0.3.2   Fixes
- * 2012-12-13   v0.3.1   Fixes Fixes Fixes Examples are now converted to grunt 0.4.0
+ * 2012-12-27   v0.3.2   Fixes issue 25 (Using almond results in “define is not defined” (when using the compiled main.js))
+ * 2012-12-13   v0.3.1   Fixes issue 40 (Error messages eaten by 0.3.0) Fixes issue 36 (npm issue installing grunt-requirejs 0.3.0) Fixes issue 38 (Task won't run anymore on v0.3.0) Examples are now converted to grunt 0.4.0
  * 2012-12-03   v0.3.0   Major refactoring Support for custom builds Support for hybrid builds Support for custom requirejs versions Now multitask Support for removeCombined
  * 2012-10-01   v0.2.14   fixes package.json dependecy versions
  * 2012-10-01   v0.2.13   fixes according to the changes from the last cheerio release
@@ -89,4 +89,4 @@ There are some project & configuration examples to get you startet:
 
 Task submitted by [Sebastian Golasch](http://github.com/asciidisco)
 
-*This file was generated on Tue Dec 18 2012 13:47:52.*
+*This file was generated on Tue Dec 18 2012 13:56:49.*
