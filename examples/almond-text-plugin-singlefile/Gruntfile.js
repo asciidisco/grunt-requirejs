@@ -11,7 +11,8 @@ module.exports = function (grunt) {
     },
 
     clean: {
-      dist: ['dist']
+      dist: ['dist'],
+      all: ['dist', 'node_modules', 'src/js/lib']
     },
 
     copy: {
@@ -23,10 +24,12 @@ module.exports = function (grunt) {
     },
 
     qunit: {
-      all: ['test/*.html']
+      all: ['tests/*.html'],
+      dev: ['tests/index.html'],
+      dist: ['tests/index-dist.html']
     },
 
-    requirejs : {
+    requirejs: {
       std: {
         options: {
           name: 'main',
@@ -48,9 +51,10 @@ module.exports = function (grunt) {
   grunt.loadNpmTasks('grunt-contrib-jshint');
   grunt.loadNpmTasks('grunt-contrib-qunit');
   grunt.loadNpmTasks('grunt-contrib-copy');
+  grunt.loadNpmTasks('grunt-volo');
   grunt.loadNpmTasks('grunt-requirejs');
 
   // register default task
-  grunt.registerTask('default', ['clean', 'jshint', 'qunit', 'copy', 'requirejs']);
+  grunt.registerTask('default', ['clean:dist', 'jshint', 'qunit:dev', 'copy', 'requirejs', 'qunit:dist']);
 
 };

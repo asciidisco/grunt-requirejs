@@ -11,4 +11,5 @@
 /examples/multipage-shim/node_modules/
 /examples/almond-text-plugin-project/node_modules/
 /examples/almond-text-plugin-singlefile/node_modules/
+/examples/almond-text-plugin-singlefile/src/js/lib
 .DS_Store

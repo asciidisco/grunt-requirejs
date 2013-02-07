@@ -1,4 +1,4 @@
-# requirejs/example-multipage
+# grunt-requirejs/example/multipage
 
 This project shows how to set up a multi-page requirejs-based project that has
 the following goals:

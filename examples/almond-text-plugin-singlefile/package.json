@@ -6,6 +6,7 @@
   },
   "scripts": {
     "build": "grunt",
+    "postinstall": "grunt volo:add",
     "test": "grunt qunit"
   },
   "dependencies": {
@@ -15,13 +16,16 @@
     "grunt-contrib-clean": "0.1.x",
     "grunt-contrib-copy": "0.3.x",
     "grunt-requirejs": "0.3.x",
+    "grunt-volo": "0.0.x",
     "qunitjs": "1.10.x"
   },
   "amd": {},
   "volo": {
-    "baseUrl": "lib",
+    "baseUrl": "src/js/lib",
     "dependencies": {
-      "jquery": "github:jquery/jquery/1.8.3"
+      "jquery": "github:jquery/jquery/1.8.3",
+      "require": "github:jrburke/requirejs/2.1.2",
+      "text": "github:requirejs/text/2.0.3"
     }
   }
 }

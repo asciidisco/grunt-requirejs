@@ -30,7 +30,8 @@ module.exports = function(grunt) {
       examples: [
         'examples/**/dist/',
         'examples/**/www-built/',
-        'examples/**/node_modules/'
+        'examples/**/node_modules/',
+        'examples/almond-text-plugin-singlefile/src/js/lib'
       ],
       tmp: ['tmp']
     },
@@ -39,13 +40,7 @@ module.exports = function(grunt) {
       dist: {
         files: {
           'tmp/doNotKillAlmond/': 'test/fixtures/*.js',
-          'examples/almond-text-plugin-project/node_modules/qunitjs/': 'node_modules/qunitjs/**/*',
-          'examples/almond-text-plugin-singlefile/node_modules/qunitjs/': 'node_modules/qunitjs/**/*',
           'examples/almond-text-plugin-singlefile/dist/index.html': 'examples/almond-text-plugin-singlefile/src/index.html',
-          'examples/libglobal/node_modules/qunitjs/': 'node_modules/qunitjs/**/*',
-          'examples/libglobal-hybrid/node_modules/qunitjs/': 'node_modules/qunitjs/**/*',
-          'examples/multipage/node_modules/qunitjs/': 'node_modules/qunitjs/**/*',
-          'examples/multipage-shim/node_modules/qunitjs/': 'node_modules/qunitjs/**/*'
         }
       }
     },
@@ -214,6 +209,35 @@ module.exports = function(grunt) {
     }
   });
 
+  // we need to fetch the npm modules for our examples projects before we can build & test them
+  /*grunt.registerTask('loadNpmAndVoloDependeciesForExamples', function () {
+    grunt.log.writeln('This task could take some time to finish...');
+    var options = {};
+    var projects = ['almond-text-plugin-singlefile', 'almond-text-plugin-project', 'libglobal', 'libglobal-hybrid', 'multipage', 'multipage-shim'];
+    var done = this.async();
+    var projectsDone = 0;
+    var doneFunction = function () {
+      projectsDone++;
+      grunt.log.ok('Finished building project: ' + this.project);
+      if (projectsDone === (projects.length -1)) {
+        done();
+        grunt.log.ok('Finished building all projects');
+      }
+    };
+
+    projects.forEach(function (project) {
+      options = {
+        cmd: 'npm',
+        args: ['install'],
+        opts: {
+          cwd: __dirname + '/examples/' + project
+        },
+      };
+      grunt.util.spawn(options, doneFunction.bind({project: project}));
+    });
+  });*/
+
+
   // grunt-contrib-internals sets the travis-ci badge to
   // the 'gruntjs' profile, i replace this with the path to my profile
   grunt.registerTask('replaceTravisBadgeInReadme', function () {
@@ -233,5 +257,5 @@ module.exports = function(grunt) {
   grunt.loadNpmTasks('grunt-contrib-internal');
 
   // Default task.
-  grunt.registerTask('default', ['copy', 'requirejs', 'jshint', 'nodeunit', 'qunit', 'clean', 'build-contrib', 'replaceTravisBadgeInReadme']);
+  grunt.registerTask('default', ['loadNpmAndVoloDependeciesForExamples', 'copy', 'requirejs', 'jshint', 'nodeunit', 'qunit', 'clean', 'build-contrib', 'replaceTravisBadgeInReadme']);
 };
