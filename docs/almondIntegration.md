@@ -6,12 +6,12 @@ that then calls (e.g. loads) the module.
 
 ## Options
 
-### almond ```boolean``` (optional)
+### almond `boolean` (optional)
 
 This is used indicate if grunt-requirejs should include almond in your combined js file.
 
 
-### replaceRequireScript ```array``` (optional)
+### replaceRequireScript `array` (optional)
 
 This is used to define the files where the script tag attributes should be replaced
 and which modules should be taken into account.
