@@ -18,6 +18,7 @@ and which modules should be taken into account.
 
 ## Including almond
 
+```javascript
   requirejs: {
     myTaskDefinition: {
       options: {
