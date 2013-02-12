@@ -2,7 +2,7 @@
 module.exports = function(grunt) {
 
     // replace this line with
-    // grunt.loadNpmTasks("require-js");
+    // grunt.loadNpmTasks("grunt-requirejs");
     // if you use this example standalone
     grunt.loadTasks("../../tasks");
 
