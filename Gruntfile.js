@@ -132,7 +132,6 @@ module.exports = function(grunt) {
         checkForPreparation();
       });
     });
-
   });
 
   // Load tasks.
