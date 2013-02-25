@@ -80,7 +80,7 @@ exports['require'] = {
     var isCustom = rjsversion.isCustomLibrary();
 
     test.equal((typeof rjs === 'function'), true, 'Default library is used if no config given');
-    test.equal(version, '2.1.2', 'Version is current');
+    test.equal(version, '2.1.4', 'Version is current');
     test.equal(isCustom, false, 'Default library is used if no config given');
 
     test.done();
@@ -150,6 +150,9 @@ exports['require'] = {
     };
 
     Q.fcall(jqueryCustomBuilder, config)
+      .fail(function () {
+        console.log(arguments);
+      })
       .then(function(modifiedConfig) {
         test.equal((typeof modifiedConfig.__builderOutput === 'object'), true, 'Builder output has been generated');
         test.equal(modifiedConfig.__builderOutput[0].name, 'jquery', 'Builder output has been named correctly');

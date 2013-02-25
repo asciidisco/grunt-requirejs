@@ -16,10 +16,10 @@ module.exports = function(grunt) {
     },
 
     copy: {
-      dist: {
-        files: {
-          'tmp/doNotKillAlmond/': 'test/fixtures/*.js'
-        }
+      main: {
+        files: [
+          {src: ['test/fixtures/*.js'], dest: 'tmp/doNotKillAlmond/', flatten: true, filter: 'isFile'}, // includes files in path
+        ]
       }
     },
 
@@ -34,7 +34,7 @@ module.exports = function(grunt) {
       },
       rmCombined: {
         options: {
-          baseUrl: 'tmp/doNotKillAlmond',
+          baseUrl: 'tmp/doNotKillAlmond/test/fixtures',
           name: 'project',
           out: 'tmp/requirejs-killed.js',
           almond: true,
@@ -104,58 +104,33 @@ module.exports = function(grunt) {
   // build all the projects from the ´examples´ folder
   // to run some tests against them
   grunt.registerTask('buildExampleProjects', function () {
-    var done = this.async(),
-        util = grunt.utils || grunt.util,
-        preparation = [false, false, false, false],
-        checkForPreparation = function () {
-          if (util._.all(preparation, util._.identity)) {
-            grunt.log.ok('all examples build');
-            done();
-          }
-        };
+    var done = this.async();
+    var util = grunt.util;
+    var examples = 'libglobal libglobal-hybrid multipage multipage-shim'.split(' ');
+    var preparation = [];
 
-    // build libglobal example
-    util.spawn({
-      cmd: 'grunt',
-      args: ['build', '--force'],
-      opts: {cwd: 'examples/libglobal'}
-    }, function () {
-      grunt.log.writeln('> "libglobal" example build');
-      preparation[0] = true;
-      checkForPreparation();
+    var checkForPreparation = function () {
+      if (util._.all(preparation, util._.identity)) {
+        grunt.log.ok('all examples build');
+        done();
+      }
+    };
+
+    examples.forEach(function () {
+      preparation.push(false);
     });
 
-    // build libglobal-hybrid example
-    util.spawn({
-      cmd: 'grunt',
-      args: ['build', '--force'],
-      opts: {cwd: 'examples/libglobal-hybrid'}
-    }, function () {
-      grunt.log.writeln('> "libglobal-hybrid" example build');
-      preparation[3] = true;
-      checkForPreparation();
-    });
-
-    // build multipage example
-    util.spawn({
-      cmd: 'grunt',
-      args: ['build', '--force'],
-      opts: {cwd: 'examples/multipage'}
-    }, function () {
-      grunt.log.writeln('> "multipage" example build');
-      preparation[1] = true;
-      checkForPreparation();
-    });
-
-    // build multipage-shim example
-    util.spawn({
-      cmd: 'grunt',
-      args: ['build', '--force'],
-      opts: {cwd: 'examples/multipage-shim'}
-    }, function () {
-      grunt.log.writeln('> "multipage-shim" example build');
-      preparation[2] = true;
-      checkForPreparation();
+    // build examples
+    examples.forEach(function (example, idx) {
+      util.spawn({
+        cmd: 'grunt',
+        args: ['build', '--force'],
+        opts: {cwd: 'examples/' + example}
+      }, function () {
+        grunt.log.writeln('> "' + example + '" example build');
+        preparation[idx] = true;
+        checkForPreparation();
+      });
     });
 
   });
@@ -172,5 +147,5 @@ module.exports = function(grunt) {
   grunt.registerTask('setUp', ['buildExampleProjects', 'copy', 'requirejs']);
 
   // Default task.
-  grunt.registerTask('default', ['setUp', 'jshint', 'nodeunit', 'clean']);
+  grunt.registerTask('default', ['setUp', 'jshint', 'nodeunit', 'qunit', 'clean']);
 };
