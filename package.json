@@ -29,7 +29,8 @@
   },
   "dependencies": {
     "requirejs": "2.1.x",
-    "cheerio": "0.9.2",
+    "cheerio": "0.10.x",
+    "domino": "git://github.com/fgnass/domino.git#master",
     "almond": "0.2.x",
     "gzip-js": "0.3.x",
     "q": "0.8.x",

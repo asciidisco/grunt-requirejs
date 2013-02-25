@@ -238,9 +238,8 @@ exports['require'] = {
 
     grunt.file.copy('test/fixtures/replaceSingleAlmond.html', 'tmp/replaceSingleAlmond.html');
     replaceAlmondInHtmlFiles(config);
-    var replacedFileContents = grunt.file.read(config.replaceRequireScript[0].files[0]).split(/\r\n|\r|\n/)[0].trim();
-    var expect = '<!DOCTYPE html><html><body><script src="js/main.js"></script></body></html>';
-    test.equal(expect, replacedFileContents, 'should replace script tag ´src´ contents');
+    var replacedFileContents = grunt.file.read(config.replaceRequireScript[0].files[0]);
+    test.ok(replacedFileContents.search('<script src="js/main.js"></script>') > -1, 'should replace script tag ´src´ contents');
     test.done();
   },
 
@@ -258,15 +257,33 @@ exports['require'] = {
 
     grunt.file.copy('test/fixtures/replaceSingleAlmondWithAttr.html', 'tmp/replaceSingleAlmondWithAttr.html');
     replaceAlmondInHtmlFiles(config);
-    var replacedFileContents = grunt.file.read(config.replaceRequireScript[0].files[0]).split(/\r\n|\r|\n/)[0].trim();
-    var expect = '<!DOCTYPE html><html><body><script src="js/main.js" async="true"></script></body></html>';
-    test.equal(expect, replacedFileContents, 'should replace script tag ´src´ contents, but leaves the other attrs alone');
+    var replacedFileContents = grunt.file.read(config.replaceRequireScript[0].files[0]);
+    test.ok(replacedFileContents.search('<script src="js/main.js" async="true"></script>') > -1, 'should replace script tag ´src´ contents, but leaves the other attrs alone');
+    test.done();
+  },
+
+  'requirejs script tag can be replaced with almondified script tag & leaves weird attributes': function(test) {
+    'use strict';
+    test.expect(1);
+    var config = {
+      replaceRequireScript: [{
+        files: ['tmp/replaceSingleAlmondWithComplexAttr.html'],
+        module: 'main'
+      }],
+      modules: [{name: 'main'}],
+      almond: true
+    };
+
+    grunt.file.copy('test/fixtures/replaceSingleAlmondWithComplexAttr.html', 'tmp/replaceSingleAlmondWithComplexAttr.html');
+    replaceAlmondInHtmlFiles(config);
+    var replacedFileContents = grunt.file.read(config.replaceRequireScript[0].files[0]);
+    test.ok(replacedFileContents.search('<script src="js/main.js" data-someweirdangularthingy="a > b" async="true"></script>') > -1, 'should replace script tag ´src´ contents, but leaves the other (complex) attrs alone');
     test.done();
   },
 
   'multiple requirejs script tags can be replaced with almondified script tags': function(test) {
     'use strict';
-    test.expect(1);
+    test.expect(2);
     var config = {
       replaceRequireScript: [{
         files: ['tmp/replaceMultiAlmond.html'],
@@ -278,9 +295,9 @@ exports['require'] = {
 
     grunt.file.copy('test/fixtures/replaceMultiAlmond.html', 'tmp/replaceMultiAlmond.html');
     replaceAlmondInHtmlFiles(config);
-    var replacedFileContents = grunt.file.read(config.replaceRequireScript[0].files[0]).split(/\r\n|\r|\n/)[0].trim();
-    var expect = '<!DOCTYPE html><html><body><script src="js/module1.js" async="true"></script><script src="js/module2.js" async="true"></script></body></html>';
-    test.equal(expect, replacedFileContents, 'should replace multiple script tag ´src´ contents, but leaves the other attrs alone');
+    var replacedFileContents = grunt.file.read(config.replaceRequireScript[0].files[0]);
+    test.ok(replacedFileContents.search('<script src="js/module1.js" async="true"></script>') > -1, 'should replace multiple script tag ´src´ contents, but leaves the other attrs alone');
+    test.ok(replacedFileContents.search('<script src="js/module2.js" async="true"></script>') > -1, 'should replace multiple script tag ´src´ contents, but leaves the other attrs alone');
     test.done();
   },
 
@@ -299,11 +316,10 @@ exports['require'] = {
     grunt.file.copy('test/fixtures/replaceSingleAlmond.html', 'tmp/multi1.html');
     grunt.file.copy('test/fixtures/replaceSingleAlmond.html', 'tmp/multi2.html');
     replaceAlmondInHtmlFiles(config);
-    var replacedFileContents1 = grunt.file.read(config.replaceRequireScript[0].files[0]).split(/\r\n|\r|\n/)[0].trim();
-    var replacedFileContents2 = grunt.file.read(config.replaceRequireScript[0].files[1]).split(/\r\n|\r|\n/)[0].trim();
-    var expect = '<!DOCTYPE html><html><body><script src="js/main.js"></script></body></html>';
-    test.equal(expect, replacedFileContents1, 'should replace script tag ´src´ contents');
-    test.equal(expect, replacedFileContents2, 'should replace script tag ´src´ contents');
+    var replacedFileContents1 = grunt.file.read(config.replaceRequireScript[0].files[0]);
+    var replacedFileContents2 = grunt.file.read(config.replaceRequireScript[0].files[1]);
+    test.ok(replacedFileContents1, 'should replace script tag ´src´ contents');
+    test.ok(replacedFileContents2.search('<script src="js/main.js"></script>') > -1, 'should replace script tag ´src´ contents');
     test.done();
   },
 
