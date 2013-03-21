@@ -78,9 +78,10 @@ exports['require'] = {
     var rjs = rjsversion.getRequirejs(config);
     var version = rjsversion.getRequirejsVersionInfo();
     var isCustom = rjsversion.isCustomLibrary();
+    var senver = require('semver');
 
     test.equal((typeof rjs === 'function'), true, 'Default library is used if no config given');
-    test.equal(version, '2.1.4', 'Version is current');
+    test.ok(semver.satisfies(version, '2.1.x'), 'Version is current');
     test.equal(isCustom, false, 'Default library is used if no config given');
 
     test.done();

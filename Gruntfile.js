@@ -72,6 +72,25 @@ module.exports = function(grunt) {
       all: ['examples/**/tests/*.html']
     },
 
+    complexity: {
+      generic: {
+        src: ['grunt.js', 'tasks/**/*.js', 'test/require_test.js', 'lib/**/*.js'],
+        options: {
+          errorsOnly: false,
+          cyclomatic: 10,
+          halstead: 10,
+          maintainability: 100
+        }
+      }
+    },
+
+    plato: {
+      bc: {
+        src: ['grunt.js', 'tasks/**/*.js', 'test/require_test.js', 'lib/**/*.js'],
+        dest: 'docs/complexity'
+      }
+    },
+
     watch: {
       files: '<config:lint.files>',
       tasks: 'default'
@@ -141,6 +160,8 @@ module.exports = function(grunt) {
   grunt.loadNpmTasks('grunt-contrib-jshint');
   grunt.loadNpmTasks('grunt-contrib-nodeunit');
   grunt.loadNpmTasks('grunt-contrib-qunit');
+  grunt.loadNpmTasks('grunt-complexity');
+  grunt.loadNpmTasks('grunt-plato');
 
   // Setup the test environment task.
   grunt.registerTask('setUp', ['buildExampleProjects', 'copy', 'requirejs']);
