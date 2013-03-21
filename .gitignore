@@ -8,4 +8,5 @@
 /examples/multipage/node_modules/
 /examples/multipage-shim/node_modules/
 /docs/complexity/
+/tmp/
 .DS_Store
