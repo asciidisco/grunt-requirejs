@@ -7,4 +7,5 @@
 /examples/libglobal-hybrid/node_modules/
 /examples/multipage/node_modules/
 /examples/multipage-shim/node_modules/
+/docs/complexity/
 .DS_Store
