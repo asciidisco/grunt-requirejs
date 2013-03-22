@@ -47,8 +47,7 @@ Example require js optimizer config entry:
   }
 ```
 
-You see, there is no difference in declaring your require config when your using your Gruntfile
-instead of using a separate requirejs config file.
+There is no difference between declaring your require config in your Gruntfile and using a separate requirejs config file.
 
 ## Almond
 _grunt-requirejs is capable of replacing require.js with almond.js automatically_
