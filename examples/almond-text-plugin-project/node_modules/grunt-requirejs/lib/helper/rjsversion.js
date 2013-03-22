@@ -24,13 +24,13 @@ exports.init = function(grunt) {
     if (config.rjs) {
       var rjsPathname = config.rjs + '/bin/r.js';
 
-      // check if the custom version is available, then load & return the
+      // if the custom version is available, then load & return the
       // custom version, else default to the standard bundled requirejs
-      if (fs.existsSync(rjsPathname)) {
+      try {
         requirejs = require(rjsPathname);
         isDefaultVersion = false;
         return requirejs;
-      }
+      } catch (e) {}
 
     }
 
