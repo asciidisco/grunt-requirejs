@@ -1,7 +1,7 @@
 {
   "name": "grunt-requirejs",
   "description": "Building require.js based applications with grunt",
-  "version": "0.3.4",
+  "version": "0.3.5",
   "homepage": "https://github.com/asciidisco/grunt-requirejs",
   "author": {
     "name": "Sebastian Golasch",
@@ -37,9 +37,7 @@
     "temp": "0.4.x",
     "grunt-lodashbuilder": "0.1.x",
     "grunt-jquerybuilder": "0.1.x",
-    "grunt-backbonebuilder": "0.1.x",
-    "grunt-complexity": "latest",
-    "grunt-plato": "latest"
+    "grunt-backbonebuilder": "0.1.x"
   },
   "devDependencies": {
     "grunt": "~0.4.0",
@@ -48,7 +46,9 @@
     "grunt-contrib-jshint": "~0.1.1",
     "grunt-contrib-nodeunit": "~0.1.2",
     "grunt-contrib-qunit": "~0.1.1",
-    "semver": "~1.1.4"
+    "semver": "~1.1.4",
+    "grunt-complexity": "latest",
+    "grunt-plato": "latest"
   },
   "peerDependencies": {
     "grunt": "~0.4.0"
