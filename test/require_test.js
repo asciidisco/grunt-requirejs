@@ -244,6 +244,25 @@ exports['require'] = {
     test.done();
   },
 
+  'requirejs script tag can be replaced with almondified script tag with no doctype declared (#59)': function(test) {
+    'use strict';
+    test.expect(1);
+    var config = {
+        replaceRequireScript: [{
+            files: ['tmp/replaceSingleAlmondNoDocType.html'],
+        module: 'main'
+        }],
+        modules: [{name: 'main'}],
+        almond: true
+    };
+
+    grunt.file.copy('test/fixtures/replaceSingleAlmondNoDocType.html', 'tmp/replaceSingleAlmondNoDocType.html');
+    replaceAlmondInHtmlFiles(config);
+    var replacedFileContents = grunt.file.read(config.replaceRequireScript[0].files[0]);
+    test.ok(replacedFileContents.search('<script src="js/main.js"></script>') > -1, 'should replace script tag ´src´ contents');
+    test.done();
+  },
+
   'requirejs script tag can be replaced with almondified script tag & leaves attributes': function(test) {
     'use strict';
     test.expect(1);
