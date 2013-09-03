@@ -8,3 +8,4 @@
 /docs/complexity/
 /tmp/
 .DS_Store
+*.log
