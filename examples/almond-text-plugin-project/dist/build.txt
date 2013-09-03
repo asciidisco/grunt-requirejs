@@ -1,9 +1,0 @@
-
-js/main.js
-----------------
-/Users/sgolasch/GitHub/projects/grunt-requirejs/node_modules/almond/almond.js
-js/lib/jquery.js
-js/app/textinsert.js
-js/lib/text.js
-text!app/msg.txt
-js/main.js
