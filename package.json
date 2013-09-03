@@ -35,7 +35,6 @@
     "gzip-js": "0.3.x",
     "q": "0.8.x",
     "temp": "0.4.x",
-    "grunt-lodashbuilder": "0.1.x",
     "grunt-jquerybuilder": "0.1.x",
     "grunt-backbonebuilder": "0.1.x"
   },

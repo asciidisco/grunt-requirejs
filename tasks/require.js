@@ -20,7 +20,7 @@ module.exports = function (grunt) {
   var optimize = require(intLibPath + 'optimize').init(grunt);
   var almondify = require(intLibPath + 'almondify').init(grunt);
   var replaceAlmondInHtmlFiles = require(intLibPath + 'replace').init(grunt);
-  var lodashCustomBuilder = require(intLibPath + 'custombuilder/lodash').init(grunt);
+  // var lodashCustomBuilder = require(intLibPath + 'custombuilder/lodash').init(grunt);
   var jqueryCustomBuilder = require(intLibPath + 'custombuilder/jquery').init(grunt);
   var backboneCustomBuilder = require(intLibPath + 'custombuilder/backbone').init(grunt);
 
@@ -37,8 +37,7 @@ module.exports = function (grunt) {
     // the run or add arbitary data.
     // Calls ´done´ when all chain is comletely executed
     // Calls the ´errorhandler if an error occures during the build
-    Q.fcall(lodashCustomBuilder, this.options())
-      .then(jqueryCustomBuilder)
+    Q.fcall(jqueryCustomBuilder, this.options())
       .then(backboneCustomBuilder)
       .then(almondify)
       .then(optimize)
