@@ -8,7 +8,6 @@ module.exports = function(grunt) {
     clean: {
       examples: [
         '/examples/libglobal/dist/',
-        '/examples/libglobal-hybrid/dist/',
         '/examples/multipage/www-built/',
         '/examples/multipage-shim/www-built/'
       ],
@@ -74,7 +73,7 @@ module.exports = function(grunt) {
 
     complexity: {
       generic: {
-        src: ['grunt.js', 'tasks/**/*.js', 'test/require_test.js', 'lib/**/*.js'],
+        src: ['Gruntfile.js', 'tasks/**/*.js', 'test/require_test.js', 'lib/**/*.js'],
         options: {
           errorsOnly: false,
           cyclomatic: 10,
@@ -86,7 +85,7 @@ module.exports = function(grunt) {
 
     plato: {
       bc: {
-        src: ['grunt.js', 'tasks/**/*.js', 'test/require_test.js', 'lib/**/*.js'],
+        src: ['Gruntfile.js', 'tasks/**/*.js', 'test/require_test.js', 'lib/**/*.js'],
         dest: 'docs/complexity'
       }
     },
@@ -97,26 +96,10 @@ module.exports = function(grunt) {
     },
 
     jshint: {
+      all: ['Gruntfile.js', 'tasks/**/*.js', 'test/require_test.js', 'lib/**/*.js'],
       options: {
-        curly: true,
-        eqeqeq: true,
-        immed: true,
-        latedef: true,
-        newcap: true,
-        noarg: true,
-        sub: true,
-        undef: true,
-        boss: true,
-        eqnull: true,
-        node: true,
-        es5: true,
-        globals: {
-          exports: true,
-          require: true,
-          module: true
-        },
-      },
-      all: ['grunt.js', 'tasks/**/*.js', 'test/require_test.js', 'lib/**/*.js']
+        jshintrc: '.jshintrc'
+      }
     }
   });
 
@@ -125,7 +108,7 @@ module.exports = function(grunt) {
   grunt.registerTask('buildExampleProjects', function () {
     var done = this.async();
     var util = grunt.util;
-    var examples = 'libglobal libglobal-hybrid multipage multipage-shim'.split(' ');
+    var examples = 'libglobal multipage multipage-shim'.split(' ');
     var preparation = [];
 
     var checkForPreparation = function () {

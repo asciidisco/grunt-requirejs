@@ -11,7 +11,7 @@
   "eqnull": true,
   "node": true,
   "es5": true,
-  globals: {
+  "globals": {
     "exports": true,
     "require": true,
     "module": true
