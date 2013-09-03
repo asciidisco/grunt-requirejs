@@ -7,7 +7,7 @@ module.exports = function(grunt) {
       std: {
         options: {
           appDir: 'www',
-          mainConfigFile: '/www/js/common.js',
+          mainConfigFile: 'www/js/common.js',
           dir: 'www-built',
           modules: [
             //First set up the common build layer.
