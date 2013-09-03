@@ -54,16 +54,6 @@ _grunt-requirejs is capable of replacing require.js with almond.js automatically
 
 For more infos please take a look at the [Almond Integration](https://github.com/asciidisco/grunt-requirejs/blob/master/docs/almondIntegration.md) document
 
-## Custom builds
-_grunt-requirejs can generate custom jQuery, Lo-Dash & Backbone.js versions during the optimization_
-
-For more infos please take a look at the [Using Custom Builds](https://github.com/asciidisco/grunt-requirejs/blob/master/docs/customBuilder.md) document
-
-## Hybrid minification
-_grunt-requirejs can minify your optimized output files using an hybrid strategy utilitizing uglifyjs & closure compiler_
-
-For more infos please take a look at the [Using Hybrid Builds](https://github.com/asciidisco/grunt-requirejs/blob/master/docs/hybridBuilds.md) document
-
 ## Using custom r.js versions
 _grunt-requirejs lets you specify a custom r.js for your build_
 
@@ -79,7 +69,6 @@ For more infos please take a look at the [Using Source Maps](https://github.com/
 There are some project & configuration examples to get you startet:
 
   - [libglobal](https://github.com/asciidisco/grunt-requirejs/tree/master/examples/libglobal)
-  - [libglobal-hybrid](https://github.com/asciidisco/grunt-requirejs/tree/master/examples/libglobal-hybrid)
   - [multipage](https://github.com/asciidisco/grunt-requirejs/tree/master/examples/mutlipage)
   - [multipage-shim](https://github.com/asciidisco/grunt-requirejs/tree/master/examples/multipage-shim)
 
@@ -98,9 +87,6 @@ Check the [AUTHORS File](https://github.com/asciidisco/grunt-requirejs/blob/mast
 + [Getting Started](https://github.com/cowboy/grunt/blob/master/docs/getting_started.md)
 + [requirejs](http://requirejs.org)
 + [almond](https://github.com/jrburke/almond)
-+ [grunt-lodashbuilder](https://github.com/asciidisco/grunt-lodashbuilder)
-+ [grunt-jquerybuilder](https://github.com/asciidisco/grunt-jquerybuilder)
-+ [grunt-backbonebuilder](https://github.com/asciidisco/grunt-backbonebuilder)
 
 ## License
 Copyright (c) 2012 Sebastian Golasch
