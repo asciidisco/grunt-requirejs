@@ -11,13 +11,9 @@ var intLibPath = '../lib/';
 // Internal libs.
 var sizeInfo = require(intLibPath + 'helper/sizeInfo').init(grunt);
 var rjsversion = require(intLibPath + 'helper/rjsversion').init(grunt);
-var closurecompiler = require(intLibPath + 'helper/closurecompiler').init(grunt);
 var optimize = require(intLibPath + 'optimize').init(grunt);
 var almondify = require(intLibPath + 'almondify').init(grunt);
 var replaceAlmondInHtmlFiles = require(intLibPath + 'replace').init(grunt);
-var lodashCustomBuilder = require(intLibPath + 'custombuilder/lodash').init(grunt);
-var jqueryCustomBuilder = require(intLibPath + 'custombuilder/jquery').init(grunt);
-var backboneCustomBuilder = require(intLibPath + 'custombuilder/backbone').init(grunt);
 
 exports['require'] = {
   setUp: function(done) {
@@ -104,64 +100,6 @@ exports['require'] = {
     test.done();
   },
 
-  // test the output of the backbone builder
-  testBackboneCustomBuilderOutput: function(test) {
-    'use strict';
-    test.expect(2);
-    var config = {
-      builder: {backbone:{include: ['View']}}
-    };
-
-    Q.fcall(backboneCustomBuilder, config)
-      .then(function(modifiedConfig) {
-        test.equal((typeof modifiedConfig.__builderOutput === 'object'), true, 'Builder output has been generated');
-        test.equal(modifiedConfig.__builderOutput[0].name, 'backbone', 'Builder output has been named correctly');
-        test.done();
-      })
-      .done();
-  },
-
-  // test the output of the lodash builder
-  testLodashCustomBuilderOutput: function(test) {
-    'use strict';
-    test.expect(2) ;
-    var config = {
-      builder: {lodash: {include: ['each'] } }
-    };
-
-    Q.fcall(lodashCustomBuilder, config)
-      .then(function(modifiedConfig) {
-        test.equal((typeof modifiedConfig.__builderOutput === 'object'), true, 'Builder output has been generated');
-        test.equal(modifiedConfig.__builderOutput[0].name, 'lodash', 'Builder output has been named correctly');
-        test.done();
-      })
-      .done();
-  },
-
-  // test the output of the jQuery builder
-  testjQueryCustomBuilderOutput: function(test) {
-    'use strict';
-    test.expect(2);
-    var config = {
-      builder: {
-        jquery: {
-          exclude: ['deprecated', 'effects']
-        },
-      }
-    };
-
-    Q.fcall(jqueryCustomBuilder, config)
-      .fail(function () {
-        console.log(arguments);
-      })
-      .then(function(modifiedConfig) {
-        test.equal((typeof modifiedConfig.__builderOutput === 'object'), true, 'Builder output has been generated');
-        test.equal(modifiedConfig.__builderOutput[0].name, 'jquery', 'Builder output has been named correctly');
-        test.done();
-      })
-      .done();
-  },
-
   'almond helper runs callback even if almond: false': function(test) {
     'use strict';
     test.expect(1);
@@ -201,28 +139,13 @@ exports['require'] = {
 
   'sourcemaps can be generated using uglify2': function(test) {
     'use strict';
-    test.expect(2);
+    test.expect(1);
 
-    var expectMap = '{"version":3,"file":"requirejs-sourcemaps.js","sources":["requirejs-sourcemaps.js.src"],"names":["eval","require","hello","world","console","log","define"],"mappings":"AACAA,KAAK,gFAELA,KAAK,gFAELC,SAAS,QAAS,SAAU,SAASC,EAAOC,GAC1CC,QAAQC,IAAIH,EAAMC,KAGpBG,OAAO,UAAW"}';
+    var expectMap = grunt.file.read('test/fixtures/expected_sourcemap.txt');
     var resultMap = grunt.file.read('tmp/requirejs-sourcemaps.js.map');
     test.equal(expectMap, resultMap, 'should generate a ´.map´ sourcemap file');
 
-    var expectSrc = grunt.file.read('test/fixtures/sourcemapresult.txt');
-    var resultSrc = grunt.file.read('tmp/requirejs-sourcemaps.js.src');
-    test.equal(expectSrc, resultSrc, 'should generate a ´.src sourcemap file');
-
     test.done();
-  },
-
-  'closure compiler can be executed': function(test) {
-    'use strict';
-    test.expect(1);
-    grunt.file.copy('test/fixtures/hello.js', 'tmp/hello.js');
-
-    closurecompiler({buildPath: 'tmp/hello.js'}, function (error, output) {
-      test.equal(output.stdout, 'define(function(){return"hello"});', 'Closure compiler should minify file');
-      test.done();
-    });
   },
 
   'requirejs script tag can be replaced with almondified script tag': function(test) {
