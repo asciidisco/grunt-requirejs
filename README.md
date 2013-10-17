@@ -19,7 +19,7 @@ grunt.loadNpmTasks('grunt-requirejs');
 
 ## Overview
 
-Inside your `grunt.js` file add a section named `requirejs`. This section specifies the options passed to [RequireJS Optimizer](http://requirejs.org/docs/optimization.html).
+Inside your `Gruntfile.js` file add a section named `requirejs`. This section specifies the options passed to [RequireJS Optimizer](http://requirejs.org/docs/optimization.html).
 
 ### Parameters
 
