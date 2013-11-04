@@ -66,7 +66,7 @@ For more infos please take a look at the [Using Source Maps](https://github.com/
 
 ## Examples
 
-There are some project & configuration examples to get you startet:
+There are some project & configuration examples to get you started:
 
   - [libglobal](https://github.com/asciidisco/grunt-requirejs/tree/master/examples/libglobal)
   - [multipage](https://github.com/asciidisco/grunt-requirejs/tree/master/examples/mutlipage)
