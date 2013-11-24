@@ -69,7 +69,7 @@ For more infos please take a look at the [Using Source Maps](https://github.com/
 There are some project & configuration examples to get you started:
 
   - [libglobal](https://github.com/asciidisco/grunt-requirejs/tree/master/examples/libglobal)
-  - [multipage](https://github.com/asciidisco/grunt-requirejs/tree/master/examples/mutlipage)
+  - [multipage](https://github.com/asciidisco/grunt-requirejs/tree/master/examples/multipage)
   - [multipage-shim](https://github.com/asciidisco/grunt-requirejs/tree/master/examples/multipage-shim)
 
 
