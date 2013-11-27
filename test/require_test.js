@@ -139,11 +139,14 @@ exports['require'] = {
 
   'sourcemaps can be generated using uglify2': function(test) {
     'use strict';
-    test.expect(1);
+    test.expect(5);
 
-    var expectMap = grunt.file.read('test/fixtures/expected_sourcemap.txt');
-    var resultMap = grunt.file.read('tmp/requirejs-sourcemaps.js.map');
-    test.equal(expectMap, resultMap, 'should generate a ´.map´ sourcemap file');
+    var resultMap = JSON.parse(grunt.file.read('tmp/requirejs-sourcemaps.js.map'));
+    test.equal(resultMap.version, 3, 'should generate a valid ´.map´ sourcemap file');
+    test.equal(resultMap.file, 'requirejs-sourcemaps.js', 'should generate a valid ´.map´ sourcemap file');
+    test.equal(resultMap.sources[0], 'hello.js', 'should generate a valid ´.map´ sourcemap file');
+    test.equal(resultMap.sources[1], 'world.js', 'should generate a valid ´.map´ sourcemap file');
+    test.equal(resultMap.sources[2], 'project.js', 'should generate a valid ´.map´ sourcemap file');
 
     test.done();
   },
