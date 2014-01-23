@@ -269,7 +269,7 @@ exports['require'] = {
     replaceAlmondInHtmlFiles(config).then(function() {
       var replacedFileContents1 = grunt.file.read(config.replaceRequireScript[0].files[0]);
       var replacedFileContents2 = grunt.file.read(config.replaceRequireScript[0].files[1]);
-      test.ok(replacedFileContents1, 'should replace script tag ´src´ contents');
+      test.ok(replacedFileContents1.search('<script src="js/main.js"></script>') > -1, 'should replace script tag ´src´ contents');
       test.ok(replacedFileContents2.search('<script src="js/main.js"></script>') > -1, 'should replace script tag ´src´ contents');
       test.done();
     });
