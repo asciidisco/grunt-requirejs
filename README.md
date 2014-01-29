@@ -49,7 +49,7 @@ Example require js optimizer config entry:
 
 There is no difference between declaring your require config in your Gruntfile and using a separate requirejs config file.
 
-> Note: Minification via Clossure Compiler is not supported!
+> Note: Minification via Closure Compiler is not supported! You can, however, use [grunt-closure-compiler](https://github.com/gmarty/grunt-closure-compiler) as a separate build step after grunt-requirejs.
 
 ## Almond
 _grunt-requirejs is capable of replacing require.js with almond.js automatically_
