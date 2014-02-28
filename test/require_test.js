@@ -302,6 +302,48 @@ exports['require'] = {
     result = grunt.file.read('node_modules/almond/almond.js');
     test.ok(result.length > 0, 'original almond.js should still be there');
     test.done();
+  },
+
+  'requirejs script tag should be replaced without messing with conditional html': function(test) {
+    'use strict';
+    test.expect(2);
+    var config = {
+      replaceRequireScript: [{
+        files: ['tmp/replaceConditionalComments.html'],
+        module: 'main'
+      }],
+      modules: [{name: 'main'}],
+      almond: true
+    };
+
+    grunt.file.copy('test/fixtures/replaceConditionalComments.html', 'tmp/replaceConditionalComments.html');
+    replaceAlmondInHtmlFiles(config).then(function() {
+      var replacedFileContents = grunt.file.read(config.replaceRequireScript[0].files[0]);
+      test.ok(replacedFileContents.search('<script src="js/main.js"></script>') > -1, 'should replace script tag ´src´ contents');
+      test.ok(replacedFileContents.search('<!--\\[if lt IE 7\\]>') > -1, 'should not mess with conditional html');
+      test.done();
+    });
+  },
+
+  'requirejs script tag should be replaced without altering django template tags': function(test) {
+    'use strict';
+    test.expect(2);
+    var config = {
+      replaceRequireScript: [{
+        files: ['tmp/replaceInDjangoTemplates.html'],
+        module: 'main'
+      }],
+      modules: [{name: 'main'}],
+      almond: true
+    };
+
+    grunt.file.copy('test/fixtures/replaceInDjangoTemplates.html', 'tmp/replaceInDjangoTemplates.html');
+    replaceAlmondInHtmlFiles(config).then(function() {
+      var replacedFileContents = grunt.file.read(config.replaceRequireScript[0].files[0]);
+      test.ok(replacedFileContents.search('<script src="js/main.js"></script>') > -1, 'should replace script tag ´src´ contents');
+      test.ok(replacedFileContents.search('{% load static %}') > -1, 'should not mess with conditional html');
+      test.done();
+    });
   }
 
 };

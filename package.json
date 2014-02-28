@@ -29,11 +29,10 @@
   },
   "dependencies": {
     "requirejs": "2.1.x",
-    "cheerio": "0.10.x",
+    "cheerio": "0.13.x",
     "almond": "0.2.x",
     "gzip-js": "0.3.x",
-    "q": "0.8.x",
-    "jsdom": "0.8.x"
+    "q": "0.8.x"
   },
   "devDependencies": {
     "grunt": "~0.4.0",
