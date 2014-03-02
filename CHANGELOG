@@ -1,3 +1,8 @@
+v0.4.1:
+  date: 2014-03-02
+  changes:
+    - Fixes #67 (Comments go missing when replacing script tag)
+
 v0.4.0:
   date: 2013-09-03
   changes:
