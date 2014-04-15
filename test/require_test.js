@@ -15,7 +15,7 @@ var optimize = require(intLibPath + 'optimize').init(grunt);
 var almondify = require(intLibPath + 'almondify').init(grunt);
 var replaceAlmondInHtmlFiles = require(intLibPath + 'replace').init(grunt);
 
-exports['require'] = {
+exports.require = {
   setUp: function(done) {
     'use strict';
     done();
