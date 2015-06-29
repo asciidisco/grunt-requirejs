@@ -275,6 +275,23 @@ exports.require = {
     });
   },
 
+  'missing html for script tag replacement should fail gracefully': function(test) {
+    'use strict';
+    test.expect(1);
+    var config = {
+      replaceRequireScript: [{
+        files: ['.tmp/missingFile.html'],
+        module: 'main'
+      }],
+      modules: [{name: 'main'}],
+      almond: true
+    };
+
+    replaceAlmondInHtmlFiles(config).then(function() {
+      test.ok(true, 'should fail gracefully when html file does not exist');
+    }).done(test.done);
+  },
+
   'requirejs script tag should be replaced without HTML/BODY elements when the file contains a fragment': function(test) {
     'use strict';
     test.expect(1);
