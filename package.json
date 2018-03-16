@@ -28,7 +28,7 @@
     "test": "grunt --verbose"
   },
   "dependencies": {
-    "requirejs": "2.1.x",
+    "requirejs": "2.x",
     "cheerio": "0.13.x",
     "almond": "0.2.x",
     "gzip-js": "0.3.x",
